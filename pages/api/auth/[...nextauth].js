@@ -4,6 +4,7 @@ import EmailProvider from "next-auth/providers/email";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import { prisma } from "../../../lib/prisma";
 import nodemailer from "nodemailer";
+import { Router } from "next/router";
 
 const authHandler = (req, res) => NextAuth(req, res, options);
 export default authHandler;
@@ -54,6 +55,7 @@ function html({ url, host, email }) {
   const buttonBackgroundColor = "#8a2be2";
   const buttonTextColor = "#ffffff";
   // The email template here
+  console.log(`THIS URL: `, url);
   return `
       <body>
         <h1>Your magic link! 🪄</h1>

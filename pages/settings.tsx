@@ -6,9 +6,16 @@ import { signOut } from "next-auth/react";
 
 const Settings: NextPage = () => {
   const router = useRouter();
+  /*   const handleLogout = () => {
+    const redirectUrl = `${window.location.origin}/auth/signin`;
+    console.log(redirectUrl);
+    signOut({ callbackUrl: redirectUrl });
+    //router.push("/auth/signin");
+  }; */
+
   const handleLogout = () => {
-    signOut();
-    router.push("/auth/signin");
+    signOut({ callbackUrl: "/" });
+    router.push("/api/auth/signin");
   };
 
   return (

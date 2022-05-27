@@ -7,9 +7,9 @@ const Tasks: NextPage = () => {
     <Layout>
       <Stack spacing="1">
         <Heading size="sm" fontWeight="medium">
-          Settings Page
+          Tasks Page
         </Heading>
-        <Text color="muted">All settings at a glance</Text>
+        <Text color="muted">All tasks at a glance</Text>
       </Stack>
     </Layout>
   );
