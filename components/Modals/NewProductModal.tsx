@@ -1,4 +1,4 @@
-// Briefing modal
+// New product modal
 
 import {
   Button,
@@ -28,7 +28,6 @@ import FormikUrlInput from "../Control/Formik/FormikUrlInput";
 import FormikNumberInput from "../Control/Formik/FormikNumberInput";
 import { isString } from "lodash";
 import Router from "next/router";
-import { type } from "os";
 
 // Unused, as we are parsing the wesite value to add https:// and using Yups url validation now
 const urlRegex =
