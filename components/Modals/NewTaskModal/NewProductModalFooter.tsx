@@ -8,8 +8,7 @@ import {
   HStack,
   Button,
 } from "@chakra-ui/react";
-import ModalStep from "../ModalStep";
-import NewProductModalFooter from "../NewProductModalFooter";
+import ModalStep from "./ModalStep";
 
 type Props = {
   formStep: number;
@@ -19,31 +18,27 @@ type Props = {
   resetFormStep: () => void;
 };
 
-const RewardAndCreatorCriteria = ({
+const NewProductModalFooter = ({
   formStep,
   nextFormStep,
   prevFormStep,
   onModalClose,
   resetFormStep,
 }: Props) => {
+  // Reset form
+
+  const resetForm = () => {
+    resetFormStep();
+    onModalClose();
+  };
   return (
-    <Box m={0}>
-      <Stack p={4}>
-        <Text>Reward and Creator Criteria</Text>
-      </Stack>
-      <NewProductModalFooter
-        formStep={formStep}
-        nextFormStep={nextFormStep}
-        prevFormStep={prevFormStep}
-        onModalClose={onModalClose}
-        resetFormStep={resetFormStep}
-      />
-      {/* <Divider borderColor="gray.300" />
+    <Box>
+      <Divider borderColor="gray.300" />
       <ModalFooter backgroundColor="gray.50" p={4}>
         <Flex width="100%" justifyContent="space-between" alignItems="center">
           <ModalStep formStep={formStep} prevFormStep={prevFormStep} />
           <HStack spacing={0}>
-            <Button variant="ghost" mr={4} onClick={onModalClose}>
+            <Button variant="ghost" mr={4} onClick={resetForm}>
               Cancel
             </Button>
             <Button variant="solid" colorScheme="purple" onClick={nextFormStep}>
@@ -51,9 +46,9 @@ const RewardAndCreatorCriteria = ({
             </Button>
           </HStack>
         </Flex>
-      </ModalFooter> */}
+      </ModalFooter>
     </Box>
   );
 };
 
-export default RewardAndCreatorCriteria;
+export default NewProductModalFooter;

@@ -22,9 +22,10 @@ import { TaskParameters, Briefing, RewardAndCreatorCriteria } from "./Forms";
 
 const NewTaskModal = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [formStep, setFormStep] = useState(0);
+  const [formStep, setFormStep] = useState(1);
   const nextFormStep = () => setFormStep((currentStep) => currentStep + 1);
   const prevFormStep = () => setFormStep((currentStep) => currentStep - 1);
+  const resetFormStep = () => setFormStep(1);
 
   return (
     <>
@@ -49,12 +50,36 @@ const NewTaskModal = () => {
             <ModalCloseButton top="12px" />
           </ModalHeader>
           <Divider borderColor="gray.300" />
-          <ModalBody p={4}>
-            {formStep == 0 && <TaskParameters />}
-            {formStep == 1 && <Briefing />}
-            {formStep == 2 && <RewardAndCreatorCriteria />}
+          <ModalBody p={0}>
+            {formStep == 1 && (
+              <TaskParameters
+                formStep={formStep}
+                nextFormStep={nextFormStep}
+                prevFormStep={prevFormStep}
+                onModalClose={onClose}
+                resetFormStep={resetFormStep}
+              />
+            )}
+            {formStep == 2 && (
+              <Briefing
+                formStep={formStep}
+                nextFormStep={nextFormStep}
+                prevFormStep={prevFormStep}
+                onModalClose={onClose}
+                resetFormStep={resetFormStep}
+              />
+            )}
+            {formStep == 3 && (
+              <RewardAndCreatorCriteria
+                formStep={formStep}
+                nextFormStep={nextFormStep}
+                prevFormStep={prevFormStep}
+                onModalClose={onClose}
+                resetFormStep={resetFormStep}
+              />
+            )}
           </ModalBody>
-          <Divider borderColor="gray.300" />
+          {/* <Divider borderColor="gray.300" />
           <ModalFooter backgroundColor="gray.50" p={4}>
             <Flex
               width="100%"
@@ -75,7 +100,7 @@ const NewTaskModal = () => {
                 </Button>
               </HStack>
             </Flex>
-          </ModalFooter>
+          </ModalFooter> */}
         </ModalContent>
       </Modal>
     </>

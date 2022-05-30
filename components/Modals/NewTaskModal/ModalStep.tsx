@@ -4,23 +4,23 @@ import { HStack, IconButton, Text } from "@chakra-ui/react";
 import { ChevronLeft } from "@styled-icons/fluentui-system-filled";
 
 type ModalStepProps = {
-  currentStep: number;
+  formStep: number;
   prevFormStep: () => void;
 };
 
-const ModalStep = ({ currentStep, prevFormStep }: ModalStepProps) => {
+const ModalStep = ({ formStep, prevFormStep }: ModalStepProps) => {
   return (
     <HStack>
-      {currentStep < 3 && (
+      {formStep < 4 && (
         <HStack>
-          {currentStep > 0 && (
+          {formStep > 1 && (
             <IconButton
               aria-label="Search database"
               icon={<ChevronLeft size="1.25rem" />}
               onClick={prevFormStep}
             />
           )}
-          <Text color="gray.400">Step {currentStep + 1} of 3</Text>
+          <Text color="gray.400">Step {formStep} of 3</Text>
         </HStack>
       )}
     </HStack>
