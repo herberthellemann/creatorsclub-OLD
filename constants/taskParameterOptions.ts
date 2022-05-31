@@ -1,6 +1,6 @@
 export const contentTypeOptions = [
-  { value: "video", label: "Video" },
-  { value: "photo", label: "Photo" },
+  { value: "video", label: "Video", description: "Motion graphics" },
+  { value: "photo", label: "Photo", description: "Still graphics" },
 ];
 
 export const videoSubtypeOptions = [

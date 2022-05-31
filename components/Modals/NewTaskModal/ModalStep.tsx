@@ -9,6 +9,7 @@ type ModalStepProps = {
 };
 
 const stepNames = [
+  "Content type",
   "Task Parameters",
   "Briefing",
   "Reward and creator criteria",
@@ -19,17 +20,21 @@ const ModalStep = ({ formStep, prevFormStep }: ModalStepProps) => {
     <HStack>
       {formStep < 4 && (
         <HStack>
-          {formStep > 1 && (
+          {formStep > 0 && (
             <IconButton
               aria-label="Search database"
               icon={<ChevronLeft size="1.25rem" />}
               onClick={prevFormStep}
             />
           )}
-          <Text color="gray.400">Step {formStep} of 3: </Text>
-          <Text color="gray.400" fontWeight="semibold">
-            {stepNames[formStep - 1]}
-          </Text>
+          {formStep != 0 && (
+            <>
+              <Text color="gray.400">Step {formStep} of 3: </Text>
+              <Text color="gray.400" fontWeight="semibold">
+                {stepNames[formStep]}
+              </Text>
+            </>
+          )}
         </HStack>
       )}
     </HStack>

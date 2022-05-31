@@ -1,36 +1,34 @@
 import {
   Box,
   Divider,
-  Stack,
-  Text,
   ModalFooter,
   Flex,
   HStack,
   Button,
 } from "@chakra-ui/react";
+//import { ButtonHTMLAttributes, DetailedHTMLProps } from "react";
 import ModalStep from "./ModalStep";
 
 type Props = {
   formStep: number;
-  nextFormStep: () => void;
   prevFormStep: () => void;
   onModalClose: () => void;
   resetFormStep: () => void;
+  children: React.ReactNode;
 };
 
 const NewProductModalFooter = ({
   formStep,
-  nextFormStep,
   prevFormStep,
   onModalClose,
   resetFormStep,
+  children,
 }: Props) => {
-  // Reset form
-
   const resetForm = () => {
     resetFormStep();
     onModalClose();
   };
+
   return (
     <Box>
       <Divider borderColor="gray.300" />
@@ -41,9 +39,7 @@ const NewProductModalFooter = ({
             <Button variant="ghost" mr={4} onClick={resetForm}>
               Cancel
             </Button>
-            <Button variant="solid" colorScheme="purple" onClick={nextFormStep}>
-              Next
-            </Button>
+            {children}
           </HStack>
         </Flex>
       </ModalFooter>

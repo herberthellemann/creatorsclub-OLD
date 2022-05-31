@@ -1,22 +1,18 @@
 import {
   Box,
   Button,
-  Divider,
   Flex,
   FormControl,
   FormLabel,
-  HStack,
   Input,
   InputLeftElement,
   InputGroup,
-  ModalFooter,
   Spacer,
   Stack,
   Text,
   Textarea,
   VStack,
 } from "@chakra-ui/react";
-import ModalStep from "../ModalStep";
 import { useForm } from "react-hook-form";
 import { TaskListSquareLtr } from "@styled-icons/fluentui-system-filled";
 import {
@@ -28,6 +24,7 @@ import {
   contentProductOptions,
 } from "../../../../constants/taskParameterOptions";
 import ReactHookSelect from "../../../Control/ReactHookSelect";
+import NewProductModalFooter from "../NewProductModalFooter";
 
 type Props = {
   formStep: number;
@@ -50,11 +47,6 @@ const TaskParameters = ({
     handleSubmit,
     formState: { errors },
   } = useForm();
-
-  const resetForm = () => {
-    resetFormStep();
-    onModalClose();
-  };
 
   const onSubmit = (data: any) => {
     console.log("Task description data:");
@@ -128,12 +120,11 @@ const TaskParameters = ({
                   focusBorderColor="purple.900"
                   rows={3}
                   mb="0.25rem"
-                  //height="100%"
                   {...register("taskDescription", {
                     required: "Please enter a task name",
                     minLength: {
-                      value: 40,
-                      message: "Min 40 characters",
+                      value: 20,
+                      message: "Min 20 characters",
                     },
                     maxLength: {
                       value: 150,
@@ -186,20 +177,17 @@ const TaskParameters = ({
             </Box>
           </Flex>
         </Stack>
-        <Divider borderColor="gray.300" />
-        <ModalFooter backgroundColor="gray.50" p={4}>
-          <Flex width="100%" justifyContent="space-between" alignItems="center">
-            <ModalStep formStep={formStep} prevFormStep={prevFormStep} />
-            <HStack spacing={0}>
-              <Button variant="ghost" mr={4} onClick={resetForm}>
-                Cancel
-              </Button>
-              <Button type="submit" variant="solid" colorScheme="purple">
-                Next
-              </Button>
-            </HStack>
-          </Flex>
-        </ModalFooter>
+        <NewProductModalFooter
+          formStep={formStep}
+          prevFormStep={prevFormStep}
+          onModalClose={onModalClose}
+          resetFormStep={resetFormStep}
+          children={
+            <Button type="submit" colorScheme="purple">
+              Next
+            </Button>
+          }
+        />
       </form>
     </Box>
   );

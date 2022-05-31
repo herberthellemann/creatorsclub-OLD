@@ -13,14 +13,19 @@ import {
 } from "@chakra-ui/react";
 import { Add } from "@styled-icons/fluentui-system-filled";
 import { useState } from "react";
-import { TaskParameters, Briefing, RewardAndCreatorCriteria } from "./Forms";
+import {
+  TaskTypeSelection,
+  TaskParameters,
+  Briefing,
+  RewardAndCreatorCriteria,
+} from "./Forms";
 
 const NewTaskModal = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [formStep, setFormStep] = useState(1);
+  const [formStep, setFormStep] = useState(0);
   const nextFormStep = () => setFormStep((currentStep) => currentStep + 1);
   const prevFormStep = () => setFormStep((currentStep) => currentStep - 1);
-  const resetFormStep = () => setFormStep(1);
+  const resetFormStep = () => setFormStep(0);
 
   return (
     <>
@@ -52,6 +57,15 @@ const NewTaskModal = () => {
           </ModalHeader>
           <Divider borderColor="gray.300" />
           <ModalBody p={0}>
+            {formStep == 0 && (
+              <TaskTypeSelection
+                formStep={formStep}
+                nextFormStep={nextFormStep}
+                prevFormStep={prevFormStep}
+                onModalClose={onClose}
+                resetFormStep={resetFormStep}
+              />
+            )}
             {formStep == 1 && (
               <TaskParameters
                 formStep={formStep}
