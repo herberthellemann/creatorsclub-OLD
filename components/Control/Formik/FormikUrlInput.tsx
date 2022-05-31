@@ -52,7 +52,7 @@ const FormikUrlInput = ({ label, ...props }: Props) => {
           //focusBorderColor={focusBorderColor}
           //borderColor={borderColor}
           //backgroundColor="white"
-          focusBorderColor="purple.900"
+          //focusBorderColor="purple.900"
           mb={0}
           {...field}
           {...props}

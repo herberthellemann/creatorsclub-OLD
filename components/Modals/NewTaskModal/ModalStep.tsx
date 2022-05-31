@@ -8,6 +8,12 @@ type ModalStepProps = {
   prevFormStep: () => void;
 };
 
+const stepNames = [
+  "Task Parameters",
+  "Briefing",
+  "Reward and creator criteria",
+];
+
 const ModalStep = ({ formStep, prevFormStep }: ModalStepProps) => {
   return (
     <HStack>
@@ -20,7 +26,10 @@ const ModalStep = ({ formStep, prevFormStep }: ModalStepProps) => {
               onClick={prevFormStep}
             />
           )}
-          <Text color="gray.400">Step {formStep} of 3</Text>
+          <Text color="gray.400">Step {formStep} of 3: </Text>
+          <Text color="gray.400" fontWeight="semibold">
+            {stepNames[formStep - 1]}
+          </Text>
         </HStack>
       )}
     </HStack>

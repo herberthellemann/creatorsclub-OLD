@@ -57,7 +57,7 @@ const FormikTextInput = ({ label, icon: Icon, ...props }: Props) => {
           //focusBorderColor={focusBorderColor}
           //borderColor={borderColor}
           //backgroundColor="white"
-          focusBorderColor="purple.900"
+          //focusBorderColor="purple.600"
           mb={0}
           {...field}
           {...props}

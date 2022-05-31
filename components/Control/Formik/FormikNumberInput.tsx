@@ -65,7 +65,7 @@ const FormikNumberInput = ({ label, icon: Icon, ...props }: Props) => {
           min={0.0}
           precision={2}
           step={1.0}
-          focusBorderColor="purple.900"
+          focusBorderColor="purple.600"
           width="full"
           mb={0}
           allowMouseWheel
