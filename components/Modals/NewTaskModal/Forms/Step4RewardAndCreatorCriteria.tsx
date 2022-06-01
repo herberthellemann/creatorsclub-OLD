@@ -9,7 +9,7 @@ type Props = {
   resetFormStep: () => void;
 };
 
-const Briefing = ({
+const Step4RewardAndCreatorCriteria = ({
   formStep,
   nextFormStep,
   prevFormStep,
@@ -19,20 +19,15 @@ const Briefing = ({
   return (
     <Box m={0}>
       <Stack p={4}>
-        <Text>Briefing</Text>
-      </Stack>{" "}
+        <Text>Reward and Creator Criteria</Text>
+      </Stack>
       <NewProductModalFooter
         formStep={formStep}
         prevFormStep={prevFormStep}
         onModalClose={onModalClose}
         resetFormStep={resetFormStep}
         children={
-          <Button
-            type="submit"
-            colorScheme="purple"
-            //Remove this line when including the form, as React Hook Form handles this
-            onClick={nextFormStep}
-          >
+          <Button type="submit" colorScheme="purple">
             Next
           </Button>
         }
@@ -41,4 +36,4 @@ const Briefing = ({
   );
 };
 
-export default Briefing;
+export default Step4RewardAndCreatorCriteria;

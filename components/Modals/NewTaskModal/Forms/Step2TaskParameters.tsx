@@ -34,7 +34,7 @@ type Props = {
   resetFormStep: () => void;
 };
 
-const TaskParameters = ({
+const Step2TaskParameters = ({
   formStep,
   nextFormStep,
   prevFormStep,
@@ -193,4 +193,4 @@ const TaskParameters = ({
   );
 };
 
-export default TaskParameters;
+export default Step2TaskParameters;

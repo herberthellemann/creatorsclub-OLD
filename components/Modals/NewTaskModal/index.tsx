@@ -14,10 +14,10 @@ import {
 import { Add } from "@styled-icons/fluentui-system-filled";
 import { useState } from "react";
 import {
-  TaskTypeSelection,
-  TaskParameters,
-  Briefing,
-  RewardAndCreatorCriteria,
+  Step1TaskTypeSelection,
+  Step2TaskParameters,
+  Step3Briefing,
+  Step4RewardAndCreatorCriteria,
 } from "./Forms";
 
 const NewTaskModal = () => {
@@ -26,6 +26,17 @@ const NewTaskModal = () => {
   const nextFormStep = () => setFormStep((currentStep) => currentStep + 1);
   const prevFormStep = () => setFormStep((currentStep) => currentStep - 1);
   const resetFormStep = () => setFormStep(0);
+
+  const modalWidth = () => {
+    switch (formStep) {
+      case 0:
+        return "520";
+      case 1:
+        return "800px";
+      default:
+        return "600px";
+    }
+  };
 
   return (
     <>
@@ -44,7 +55,11 @@ const NewTaskModal = () => {
         isCentered
       >
         <ModalOverlay background="purple.600" />
-        <ModalContent borderWidth={4} minWidth="800px" borderColor="purple.900">
+        <ModalContent
+          borderWidth={4}
+          minWidth={modalWidth()}
+          borderColor="purple.900"
+        >
           <ModalHeader p={4} backgroundColor="gray.50" alignContent="end">
             New Content Task 🙌
             <ModalCloseButton
@@ -58,7 +73,7 @@ const NewTaskModal = () => {
           <Divider borderColor="gray.300" />
           <ModalBody p={0}>
             {formStep == 0 && (
-              <TaskTypeSelection
+              <Step1TaskTypeSelection
                 formStep={formStep}
                 nextFormStep={nextFormStep}
                 prevFormStep={prevFormStep}
@@ -67,7 +82,7 @@ const NewTaskModal = () => {
               />
             )}
             {formStep == 1 && (
-              <TaskParameters
+              <Step2TaskParameters
                 formStep={formStep}
                 nextFormStep={nextFormStep}
                 prevFormStep={prevFormStep}
@@ -76,7 +91,7 @@ const NewTaskModal = () => {
               />
             )}
             {formStep == 2 && (
-              <Briefing
+              <Step3Briefing
                 formStep={formStep}
                 nextFormStep={nextFormStep}
                 prevFormStep={prevFormStep}
@@ -85,7 +100,7 @@ const NewTaskModal = () => {
               />
             )}
             {formStep == 3 && (
-              <RewardAndCreatorCriteria
+              <Step4RewardAndCreatorCriteria
                 formStep={formStep}
                 nextFormStep={nextFormStep}
                 prevFormStep={prevFormStep}

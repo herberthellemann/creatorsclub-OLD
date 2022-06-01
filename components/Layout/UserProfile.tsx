@@ -1,5 +1,4 @@
 import { Avatar, Box, HStack, Text } from "@chakra-ui/react";
-import * as React from "react";
 
 interface UserProfileProps {
   name: string;
@@ -9,6 +8,7 @@ interface UserProfileProps {
 
 export const UserProfile = (props: UserProfileProps) => {
   const { name, image, email } = props;
+
   return (
     <HStack spacing="10px">
       <Avatar
@@ -16,13 +16,13 @@ export const UserProfile = (props: UserProfileProps) => {
         src={image}
         boxSize="10"
         borderWidth="1px"
-        borderColor="purple.600"
+        borderColor="on-accent"
       />
       <Box>
-        <Text fontWeight="medium" fontSize="sm">
+        <Text color="on-accent" fontWeight="medium" fontSize="sm">
           {name}
         </Text>
-        <Text color="muted" fontSize="sm">
+        <Text color="on-accent-muted" fontSize="sm">
           {email}
         </Text>
       </Box>

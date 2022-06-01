@@ -1,6 +1,16 @@
 export const contentTypeOptions = [
-  { value: "video", label: "Video", description: "Motion graphics" },
-  { value: "photo", label: "Photo", description: "Still graphics" },
+  {
+    value: "video",
+    label: "Video",
+    description:
+      "Commission video content in any format and for any platform. Use the content in whichever way you want",
+  },
+  {
+    value: "photo",
+    label: "Photo",
+    description:
+      "Commission photo content in any format and for any platform. Use the content in whichever way you want.",
+  },
 ];
 
 export const videoSubtypeOptions = [
