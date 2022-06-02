@@ -1,5 +1,6 @@
-import { Box, Button, Stack, Text } from "@chakra-ui/react";
+import { Box, Button, ModalBody, Text } from "@chakra-ui/react";
 import NewProductModalFooter from "../NewProductModalFooter";
+import NewProductModalHeader from "../NewProductModalHeader";
 
 type Props = {
   formStep: number;
@@ -18,9 +19,13 @@ const Step4RewardAndCreatorCriteria = ({
 }: Props) => {
   return (
     <Box m={0}>
-      <Stack p={4}>
+      <NewProductModalHeader
+        onModalClose={onModalClose}
+        resetFormStep={resetFormStep}
+      />
+      <ModalBody p={4}>
         <Text>Reward and Creator Criteria</Text>
-      </Stack>
+      </ModalBody>
       <NewProductModalFooter
         formStep={formStep}
         prevFormStep={prevFormStep}

@@ -7,6 +7,7 @@ import {
   Input,
   InputLeftElement,
   InputGroup,
+  ModalBody,
   Spacer,
   Stack,
   Text,
@@ -25,6 +26,9 @@ import {
 } from "../../../../constants/taskParameterOptions";
 import ReactHookSelect from "../../../Control/ReactHookSelect";
 import NewProductModalFooter from "../NewProductModalFooter";
+import { useStateMachine } from "little-state-machine";
+import updateAction from "../updateAction";
+import NewProductModalHeader from "../NewProductModalHeader";
 
 type Props = {
   formStep: number;
@@ -47,148 +51,147 @@ const Step2TaskParameters = ({
     handleSubmit,
     formState: { errors },
   } = useForm();
+  const { actions, state } = useStateMachine({ updateAction });
 
   const onSubmit = (data: any) => {
-    console.log("Task description data:");
-    console.log(data);
-    alert(JSON.stringify(data, null, 2));
+    actions.updateAction(data);
     nextFormStep();
   };
 
   return (
-    <Box>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <Stack p={4}>
-          <Flex direction="column" gap="2">
-            <VStack flex="1">
-              <FormControl>
-                <Flex alignItems="center" mb={1}>
-                  <FormLabel htmlFor="taskName" mb={0}>
-                    Task name
-                  </FormLabel>
-                  <Spacer />
-                  {errors.taskName ? (
-                    <Text fontSize="sm" color="red.500">
-                      {errors.taskName.message}
-                    </Text>
-                  ) : null}
-                </Flex>
-                <InputGroup>
-                  <InputLeftElement
-                    pointerEvents="none"
-                    children={
-                      TaskListSquareLtr ? (
-                        <TaskListSquareLtr size="16px" />
-                      ) : null
-                    }
-                  />
-                  <Input
-                    type="text"
-                    placeholder="Task name"
-                    focusBorderColor="purple.900"
-                    {...register("taskName", {
-                      required: "Please enter a task name",
-                      minLength: 3,
-                      maxLength: 80,
-                    })}
-                  />
-                </InputGroup>
-                <Text
-                  fontSize="0.75rem"
-                  color="gray.500"
-                  height="18px"
-                  mb="0.25rem"
-                >
-                  Choose a short unique name and avoid your brand name.
-                </Text>
-              </FormControl>
-              <FormControl>
-                <Flex alignItems="center" mb={1}>
-                  <FormLabel htmlFor="taskDescription" mb={0}>
-                    Task description
-                  </FormLabel>
-                  <Spacer />
-                  {errors.taskDescription ? (
-                    <Text fontSize="sm" color="red.500">
-                      {errors.taskDescription.message}
-                    </Text>
-                  ) : null}
-                </Flex>
-                <Textarea
-                  placeholder="Write a short description creators can understand"
-                  resize="none"
+    <Box as="form" onSubmit={handleSubmit(onSubmit)}>
+      <NewProductModalHeader
+        onModalClose={onModalClose}
+        resetFormStep={resetFormStep}
+      />
+      <ModalBody p={4}>
+        <Flex direction="column" gap="2">
+          <VStack flex="1">
+            <FormControl>
+              <Flex alignItems="center" mb={1}>
+                <FormLabel htmlFor="taskName" mb={0}>
+                  Task name
+                </FormLabel>
+                <Spacer />
+                {errors.taskName ? (
+                  <Text fontSize="sm" color="red.500">
+                    {errors.taskName.message}
+                  </Text>
+                ) : null}
+              </Flex>
+              <InputGroup>
+                <InputLeftElement
+                  pointerEvents="none"
+                  children={
+                    TaskListSquareLtr ? <TaskListSquareLtr size="16px" /> : null
+                  }
+                />
+                <Input
+                  type="text"
+                  placeholder="Task name"
                   focusBorderColor="purple.900"
-                  rows={3}
-                  mb="0.25rem"
-                  {...register("taskDescription", {
+                  {...register("taskName", {
                     required: "Please enter a task name",
-                    minLength: {
-                      value: 20,
-                      message: "Min 20 characters",
-                    },
-                    maxLength: {
-                      value: 150,
-                      message: "Max 150 characters",
-                    },
+                    minLength: 3,
+                    maxLength: 80,
                   })}
                 />
-              </FormControl>
-            </VStack>
-            <Box flex="1" pt="0" fontSize="3xl">
-              <FormLabel mb="0.25rem">Video parameters</FormLabel>
-              <Stack direction="row">
-                <ReactHookSelect
-                  name="videoSubtype"
-                  placeholder="Type"
-                  options={videoSubtypeOptions}
-                  control={control}
-                />
-                <ReactHookSelect
-                  name="videoLength"
-                  placeholder="Length"
-                  options={videoLengthOptions}
-                  control={control}
-                />
-                <ReactHookSelect
-                  name="videoAspectRatio"
-                  placeholder="Format"
-                  options={contentAspectRatioOptions}
-                  control={control}
-                />
-                <ReactHookSelect
-                  name="contentProduct"
-                  placeholder="Product"
-                  options={contentProductOptions}
-                  control={control}
-                />
-                <ReactHookSelect
-                  name="contentUseCase"
-                  placeholder="Use case"
-                  options={contentUseCaseOptions}
-                  control={control}
-                />
-                <ReactHookSelect
-                  name="videoLanguage"
-                  placeholder="Language"
-                  options={videoLanguageOptions}
-                  control={control}
-                />
-              </Stack>
-            </Box>
-          </Flex>
-        </Stack>
-        <NewProductModalFooter
-          formStep={formStep}
-          prevFormStep={prevFormStep}
-          onModalClose={onModalClose}
-          resetFormStep={resetFormStep}
-          children={
-            <Button type="submit" colorScheme="purple">
-              Next
-            </Button>
-          }
-        />
-      </form>
+              </InputGroup>
+              <Text
+                fontSize="0.75rem"
+                color="gray.500"
+                height="18px"
+                mb="0.25rem"
+              >
+                Choose a short unique name and avoid your brand name.
+              </Text>
+            </FormControl>
+            <FormControl>
+              <Flex alignItems="center" mb={1}>
+                <FormLabel htmlFor="taskDescription" mb={0}>
+                  Task description
+                </FormLabel>
+                <Spacer />
+                {errors.taskDescription ? (
+                  <Text fontSize="sm" color="red.500">
+                    {errors.taskDescription.message}
+                  </Text>
+                ) : null}
+              </Flex>
+              <Textarea
+                placeholder="Write a short description creators can understand"
+                resize="none"
+                focusBorderColor="purple.900"
+                rows={3}
+                mb="0.25rem"
+                {...register("taskDescription", {
+                  required: "Please enter a task name",
+                  minLength: {
+                    value: 30,
+                    message: "Min 30 characters",
+                  },
+                  maxLength: {
+                    value: 150,
+                    message: "Max 150 characters",
+                  },
+                })}
+              />
+            </FormControl>
+          </VStack>
+          <Box flex="1" pt="0" fontSize="3xl">
+            <FormLabel mb="0.25rem">Video parameters</FormLabel>
+            <Stack direction="row">
+              <ReactHookSelect
+                name="videoSubtype"
+                placeholder="Type"
+                options={videoSubtypeOptions}
+                control={control}
+              />
+              <ReactHookSelect
+                name="videoLength"
+                placeholder="Length"
+                options={videoLengthOptions}
+                control={control}
+              />
+              <ReactHookSelect
+                name="videoAspectRatio"
+                placeholder="Format"
+                options={contentAspectRatioOptions}
+                control={control}
+              />
+              <ReactHookSelect
+                name="contentProduct"
+                placeholder="Product"
+                options={contentProductOptions}
+                control={control}
+              />
+              <ReactHookSelect
+                name="contentUseCase"
+                placeholder="Use case"
+                options={contentUseCaseOptions}
+                control={control}
+              />
+              <ReactHookSelect
+                name="videoLanguage"
+                placeholder="Language"
+                options={videoLanguageOptions}
+                control={control}
+              />
+            </Stack>
+          </Box>
+        </Flex>
+      </ModalBody>
+      <NewProductModalFooter
+        formStep={formStep}
+        prevFormStep={prevFormStep}
+        onModalClose={onModalClose}
+        resetFormStep={resetFormStep}
+        children={
+          <Button type="submit" colorScheme="purple">
+            Next
+          </Button>
+        }
+      />
     </Box>
   );
 };

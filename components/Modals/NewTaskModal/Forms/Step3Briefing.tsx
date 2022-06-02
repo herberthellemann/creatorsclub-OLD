@@ -1,5 +1,8 @@
-import { Box, Button, Stack, Text } from "@chakra-ui/react";
+import { Box, Button, ModalBody, Text } from "@chakra-ui/react";
 import NewProductModalFooter from "../NewProductModalFooter";
+import { useStateMachine } from "little-state-machine";
+import updateAction from "../updateAction";
+import NewProductModalHeader from "../NewProductModalHeader";
 
 type Props = {
   formStep: number;
@@ -16,11 +19,18 @@ const Step3Briefing = ({
   onModalClose,
   resetFormStep,
 }: Props) => {
+  const { state } = useStateMachine({ updateAction });
+  console.log(JSON.stringify(state, null, 2));
+
   return (
     <Box m={0}>
-      <Stack p={4}>
+      <NewProductModalHeader
+        onModalClose={onModalClose}
+        resetFormStep={resetFormStep}
+      />
+      <ModalBody p={4}>
         <Text>Briefing</Text>
-      </Stack>{" "}
+      </ModalBody>
       <NewProductModalFooter
         formStep={formStep}
         prevFormStep={prevFormStep}

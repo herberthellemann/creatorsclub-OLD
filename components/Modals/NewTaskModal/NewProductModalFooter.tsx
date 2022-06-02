@@ -6,7 +6,6 @@ import {
   HStack,
   Button,
 } from "@chakra-ui/react";
-//import { ButtonHTMLAttributes, DetailedHTMLProps } from "react";
 import ModalStep from "./ModalStep";
 
 type Props = {
@@ -24,11 +23,6 @@ const NewProductModalFooter = ({
   resetFormStep,
   children,
 }: Props) => {
-  const resetForm = () => {
-    resetFormStep();
-    onModalClose();
-  };
-
   return (
     <Box>
       <Divider borderColor="gray.300" />
@@ -36,7 +30,14 @@ const NewProductModalFooter = ({
         <Flex width="100%" justifyContent="space-between" alignItems="center">
           <ModalStep formStep={formStep} prevFormStep={prevFormStep} />
           <HStack spacing={0}>
-            <Button variant="ghost" mr={4} onClick={resetForm}>
+            <Button
+              variant="ghost"
+              mr={4}
+              onClick={() => {
+                resetFormStep();
+                onModalClose();
+              }}
+            >
               Cancel
             </Button>
             {children}
