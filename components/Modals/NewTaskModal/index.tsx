@@ -16,10 +16,7 @@ import {
   Step3Briefing,
   Step4RewardAndCreatorCriteria,
 } from "./Forms";
-import { StateMachineProvider, createStore } from "little-state-machine";
-import { string } from "yup/lib/locale";
-
-createStore({});
+import { NewTaskContextProvider } from "./Context/NewTaskContext";
 
 const NewTaskModal = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -41,7 +38,7 @@ const NewTaskModal = () => {
 
   return (
     <>
-      <StateMachineProvider>
+      <NewTaskContextProvider>
         <Button
           colorScheme="purple"
           onClick={onOpen}
@@ -102,7 +99,7 @@ const NewTaskModal = () => {
             </Box>
           </ModalContent>
         </Modal>
-      </StateMachineProvider>
+      </NewTaskContextProvider>
     </>
   );
 };

@@ -1,8 +1,9 @@
 import { Box, Button, ModalBody, Text } from "@chakra-ui/react";
 import NewProductModalFooter from "../NewProductModalFooter";
-import { useStateMachine } from "little-state-machine";
 import updateAction from "../updateAction";
 import NewProductModalHeader from "../NewProductModalHeader";
+import { NewTaskContext } from "../Context/NewTaskContext";
+import { useContext } from "react";
 
 type Props = {
   formStep: number;
@@ -19,8 +20,9 @@ const Step3Briefing = ({
   onModalClose,
   resetFormStep,
 }: Props) => {
-  const { state } = useStateMachine({ updateAction });
-  console.log(JSON.stringify(state, null, 2));
+  const useTaskContext = useContext(NewTaskContext);
+  const { task, dispatch } = useTaskContext;
+  console.log(`NEW log task state from Step 3: `, task);
 
   return (
     <Box m={0}>
@@ -30,6 +32,7 @@ const Step3Briefing = ({
       />
       <ModalBody p={4}>
         <Text>Briefing</Text>
+        <Text>From the context. Video length: {task.length}</Text>
       </ModalBody>
       <NewProductModalFooter
         formStep={formStep}

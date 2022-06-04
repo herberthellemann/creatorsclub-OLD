@@ -19,7 +19,6 @@
     "chakra-react-select": "^4.0.0",
     "formik": "^2.2.9",
     "framer-motion": "^6.3.3",
-    "little-state-machine": "^4.4.1",
     "next": "^12.1.6",
     "next-auth": "^4.3.4",
     "nodemailer": "^6.7.5",

@@ -26,9 +26,11 @@ import {
 } from "../../../../constants/taskParameterOptions";
 import ReactHookSelect from "../../../Control/ReactHookSelect";
 import NewProductModalFooter from "../NewProductModalFooter";
-import { useStateMachine } from "little-state-machine";
 import updateAction from "../updateAction";
 import NewProductModalHeader from "../NewProductModalHeader";
+import { NewTaskContext } from "../Context/NewTaskContext";
+import { ActionType } from "../Context/types";
+import { useContext } from "react";
 
 type Props = {
   formStep: number;
@@ -51,10 +53,25 @@ const Step2TaskParameters = ({
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const { actions, state } = useStateMachine({ updateAction });
+
+  const useTaskContext = useContext(NewTaskContext);
+  const { dispatch } = useTaskContext;
 
   const onSubmit = (data: any) => {
-    actions.updateAction(data);
+    dispatch({
+      type: ActionType.PUSH_TASK_PARAMETERS,
+      payload: {
+        name: data.taskName,
+        description: data.taskDescription,
+        type: data.videoSubtype,
+        length: data.videoLength,
+        aspectRatio: data.videoAspectRatio,
+        //product: ProductType;
+        product: data.contentProduct,
+        useCase: data.contentUseCase,
+        language: data.videoLanguage,
+      },
+    });
     nextFormStep();
   };
 
@@ -63,6 +80,7 @@ const Step2TaskParameters = ({
       <NewProductModalHeader
         onModalClose={onModalClose}
         resetFormStep={resetFormStep}
+        //contentType={state.contentType}
       />
       <ModalBody p={4}>
         <Flex direction="column" gap="2">

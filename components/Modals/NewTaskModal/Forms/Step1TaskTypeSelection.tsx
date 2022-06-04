@@ -4,7 +4,6 @@ import { contentTypeOptions } from "../../../../constants/taskParameterOptions";
 import NewProductModalHeader from "../NewProductModalHeader";
 import NewProductModalFooter from "../NewProductModalFooter";
 import { RadioCard, RadioCardGroup } from "../RadioCardGroup";
-import { useStateMachine } from "little-state-machine";
 import updateAction from "../updateAction";
 
 type Props = {
@@ -23,10 +22,8 @@ const Step1TaskTypeSelection = ({
   resetFormStep,
 }: Props) => {
   const { control, handleSubmit } = useForm();
-  const { actions, state } = useStateMachine({ updateAction });
 
   const onSubmit = (data: any) => {
-    actions.updateAction(data);
     nextFormStep();
   };
 
