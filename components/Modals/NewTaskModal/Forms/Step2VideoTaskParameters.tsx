@@ -26,13 +26,13 @@ import {
 } from "../../../../constants/taskParameterOptions";
 import ReactHookSelect from "../../../Control/ReactHookSelect";
 import NewProductModalFooter from "../NewProductModalFooter";
-import updateAction from "../updateAction";
 import NewProductModalHeader from "../NewProductModalHeader";
-import { NewTaskContext } from "../Context/NewTaskContext";
+import { NewVideoTaskContext } from "../Context/NewVideoTaskContext";
 import { ActionType } from "../Context/types";
 import { useContext } from "react";
 
 type Props = {
+  taskType: string;
   formStep: number;
   nextFormStep: () => void;
   prevFormStep: () => void;
@@ -40,7 +40,8 @@ type Props = {
   resetFormStep: () => void;
 };
 
-const Step2TaskParameters = ({
+const Step2VideoTaskParameters = ({
+  taskType,
   formStep,
   nextFormStep,
   prevFormStep,
@@ -54,18 +55,18 @@ const Step2TaskParameters = ({
     formState: { errors },
   } = useForm();
 
-  const useTaskContext = useContext(NewTaskContext);
+  const useTaskContext = useContext(NewVideoTaskContext);
   const { dispatch } = useTaskContext;
 
   const onSubmit = (data: any) => {
     dispatch({
-      type: ActionType.PUSH_TASK_PARAMETERS,
+      type: ActionType.PUSH_VIDEO_TASK_PARAMETERS,
       payload: {
         name: data.taskName,
         description: data.taskDescription,
         type: data.videoSubtype,
         length: data.videoLength,
-        aspectRatio: data.videoAspectRatio,
+        aspectRatio: data.contentAspectRatio,
         //product: ProductType;
         product: data.contentProduct,
         useCase: data.contentUseCase,
@@ -80,6 +81,7 @@ const Step2TaskParameters = ({
       <NewProductModalHeader
         onModalClose={onModalClose}
         resetFormStep={resetFormStep}
+        contentType={taskType}
         //contentType={state.contentType}
       />
       <ModalBody p={4}>
@@ -172,7 +174,7 @@ const Step2TaskParameters = ({
                 control={control}
               />
               <ReactHookSelect
-                name="videoAspectRatio"
+                name="contentAspectRatio"
                 placeholder="Format"
                 options={contentAspectRatioOptions}
                 control={control}
@@ -214,4 +216,4 @@ const Step2TaskParameters = ({
   );
 };
 
-export default Step2TaskParameters;
+export default Step2VideoTaskParameters;

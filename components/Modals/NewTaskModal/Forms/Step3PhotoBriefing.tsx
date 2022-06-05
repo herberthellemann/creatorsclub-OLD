@@ -1,6 +1,8 @@
 import { Box, Button, ModalBody, Text } from "@chakra-ui/react";
 import NewProductModalFooter from "../NewProductModalFooter";
 import NewProductModalHeader from "../NewProductModalHeader";
+import { NewPhotoTaskContext } from "../Context/NewPhotoTaskContext";
+import { useContext } from "react";
 
 type Props = {
   taskType: string;
@@ -11,7 +13,7 @@ type Props = {
   resetFormStep: () => void;
 };
 
-const Step4RewardAndCreatorCriteria = ({
+const Step3PhotoBriefing = ({
   taskType,
   formStep,
   nextFormStep,
@@ -19,6 +21,10 @@ const Step4RewardAndCreatorCriteria = ({
   onModalClose,
   resetFormStep,
 }: Props) => {
+  const useTaskContext = useContext(NewPhotoTaskContext);
+  const { photoTask, dispatch } = useTaskContext;
+  console.log(`NEW log task state from Step 3: `, photoTask);
+
   return (
     <Box m={0}>
       <NewProductModalHeader
@@ -27,7 +33,10 @@ const Step4RewardAndCreatorCriteria = ({
         contentType={taskType}
       />
       <ModalBody p={4}>
-        <Text>Reward and Creator Criteria</Text>
+        <Text>Briefing</Text>
+        <Text>
+          From the context. Photo aspectRatio: {photoTask.aspectRatio}
+        </Text>
       </ModalBody>
       <NewProductModalFooter
         formStep={formStep}
@@ -35,7 +44,12 @@ const Step4RewardAndCreatorCriteria = ({
         onModalClose={onModalClose}
         resetFormStep={resetFormStep}
         children={
-          <Button type="submit" colorScheme="purple">
+          <Button
+            type="submit"
+            colorScheme="purple"
+            //Remove this line when including the form, as React Hook Form handles this
+            onClick={nextFormStep}
+          >
             Next
           </Button>
         }
@@ -44,4 +58,4 @@ const Step4RewardAndCreatorCriteria = ({
   );
 };
 
-export default Step4RewardAndCreatorCriteria;
+export default Step3PhotoBriefing;

@@ -14,7 +14,11 @@ const NewProductModalHeader = ({
   return (
     <Box>
       <ModalHeader p={4} backgroundColor="gray.50" alignContent="end">
-        New {contentType ? contentType : "Content"} Task 🙌
+        New{" "}
+        {contentType
+          ? contentType.charAt(0).toUpperCase() + contentType.slice(1)
+          : "Content"}{" "}
+        Task 🙌
         <ModalCloseButton
           onClick={() => {
             resetFormStep();
