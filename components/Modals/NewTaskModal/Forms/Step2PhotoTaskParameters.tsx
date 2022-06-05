@@ -54,7 +54,7 @@ const Step2PhotoTaskParameters = ({
   } = useForm();
 
   const useTaskContext = useContext(NewPhotoTaskContext);
-  const { dispatch } = useTaskContext;
+  const { photoTask, dispatch } = useTaskContext;
 
   const onSubmit = (data: any) => {
     dispatch({
@@ -78,7 +78,6 @@ const Step2PhotoTaskParameters = ({
         onModalClose={onModalClose}
         resetFormStep={resetFormStep}
         contentType={taskType}
-        //contentType={state.contentType}
       />
       <ModalBody p={4}>
         <Flex direction="column" gap="2">
@@ -104,6 +103,7 @@ const Step2PhotoTaskParameters = ({
                 />
                 <Input
                   type="text"
+                  defaultValue={photoTask.name}
                   placeholder="Task name"
                   focusBorderColor="purple.900"
                   {...register("taskName", {
@@ -135,6 +135,7 @@ const Step2PhotoTaskParameters = ({
                 ) : null}
               </Flex>
               <Textarea
+                defaultValue={photoTask.description}
                 placeholder="Write a short description creators can understand"
                 resize="none"
                 focusBorderColor="purple.900"
@@ -160,6 +161,7 @@ const Step2PhotoTaskParameters = ({
               <ReactHookSelect
                 name="photoSubtype"
                 placeholder="Type"
+                defaultValue={photoTask.type}
                 options={photoSubtypeOptions}
                 control={control}
               />

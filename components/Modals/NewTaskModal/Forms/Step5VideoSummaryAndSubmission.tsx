@@ -1,4 +1,6 @@
 import { Box, Button, ModalBody, Text } from "@chakra-ui/react";
+import { useContext } from "react";
+import { NewVideoTaskContext } from "../Context/NewVideoTaskContext";
 import NewProductModalFooter from "../NewProductModalFooter";
 import NewProductModalHeader from "../NewProductModalHeader";
 
@@ -11,7 +13,7 @@ type Props = {
   resetFormStep: () => void;
 };
 
-const Step4RewardAndCreatorCriteria = ({
+const Step5VideoSummaryAndSubmission = ({
   taskType,
   formStep,
   nextFormStep,
@@ -19,6 +21,10 @@ const Step4RewardAndCreatorCriteria = ({
   onModalClose,
   resetFormStep,
 }: Props) => {
+  const useTaskContext = useContext(NewVideoTaskContext);
+  const { videoTask, dispatch } = useTaskContext;
+  console.log(`NEW log task state from Step5: `, videoTask);
+
   return (
     <Box m={0}>
       <NewProductModalHeader
@@ -44,4 +50,4 @@ const Step4RewardAndCreatorCriteria = ({
   );
 };
 
-export default Step4RewardAndCreatorCriteria;
+export default Step5VideoSummaryAndSubmission;

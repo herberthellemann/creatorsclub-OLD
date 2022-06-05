@@ -13,12 +13,13 @@ const stepNames = [
   "Task Parameters",
   "Briefing",
   "Reward and creator criteria",
+  "Summary and submission",
 ];
 
 const ModalStep = ({ formStep, prevFormStep }: ModalStepProps) => {
   return (
     <HStack>
-      {formStep < 4 && (
+      {formStep < 5 && (
         <HStack>
           {formStep > 0 && (
             <IconButton
@@ -29,12 +30,29 @@ const ModalStep = ({ formStep, prevFormStep }: ModalStepProps) => {
           )}
           {formStep != 0 && (
             <>
+              {formStep != 4 && (
+                <Text color="gray.400">Step {formStep} of 3: </Text>
+              )}
+              <Text color="gray.400" fontWeight="semibold">
+                {stepNames[formStep]}
+              </Text>
+            </>
+          )}
+          {/* {formStep > 0 && formStep < 4 && (
+            <>
               <Text color="gray.400">Step {formStep} of 3: </Text>
               <Text color="gray.400" fontWeight="semibold">
                 {stepNames[formStep]}
               </Text>
             </>
           )}
+          {formStep == 4 && (
+            <>
+              <Text color="gray.400" fontWeight="semibold">
+                {stepNames[formStep]}
+              </Text>
+            </>
+          )} */}
         </HStack>
       )}
     </HStack>

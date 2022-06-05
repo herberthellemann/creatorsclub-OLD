@@ -16,7 +16,10 @@ import {
   Step2PhotoTaskParameters,
   Step3VideoBriefing,
   Step3PhotoBriefing,
-  Step4RewardAndCreatorCriteria,
+  Step4VideoRewardCreatorCriteriaDeadline,
+  Step4PhotoRewardCreatorCriteriaDeadline,
+  Step5VideoSummaryAndSubmission,
+  Step5PhotoSummaryAndSubmission,
 } from "./Forms";
 import { NewVideoTaskContextProvider } from "./Context/NewVideoTaskContext";
 import { NewPhotoTaskContextProvider } from "./Context/NewPhotoTaskContext";
@@ -97,7 +100,17 @@ const NewTaskModal = () => {
                   />
                 )}
                 {formStep == 3 && (
-                  <Step4RewardAndCreatorCriteria
+                  <Step4VideoRewardCreatorCriteriaDeadline
+                    taskType={taskType}
+                    formStep={formStep}
+                    nextFormStep={nextFormStep}
+                    prevFormStep={prevFormStep}
+                    onModalClose={onClose}
+                    resetFormStep={resetFormStep}
+                  />
+                )}
+                {formStep == 4 && (
+                  <Step5VideoSummaryAndSubmission
                     taskType={taskType}
                     formStep={formStep}
                     nextFormStep={nextFormStep}
@@ -131,7 +144,17 @@ const NewTaskModal = () => {
                   />
                 )}
                 {formStep == 3 && (
-                  <Step4RewardAndCreatorCriteria
+                  <Step4PhotoRewardCreatorCriteriaDeadline
+                    taskType={taskType}
+                    formStep={formStep}
+                    nextFormStep={nextFormStep}
+                    prevFormStep={prevFormStep}
+                    onModalClose={onClose}
+                    resetFormStep={resetFormStep}
+                  />
+                )}
+                {formStep == 4 && (
+                  <Step5PhotoSummaryAndSubmission
                     taskType={taskType}
                     formStep={formStep}
                     nextFormStep={nextFormStep}

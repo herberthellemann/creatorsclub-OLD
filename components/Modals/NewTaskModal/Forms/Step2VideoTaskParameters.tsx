@@ -82,7 +82,6 @@ const Step2VideoTaskParameters = ({
         onModalClose={onModalClose}
         resetFormStep={resetFormStep}
         contentType={taskType}
-        //contentType={state.contentType}
       />
       <ModalBody p={4}>
         <Flex direction="column" gap="2">
