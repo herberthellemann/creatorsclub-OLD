@@ -3,7 +3,7 @@ import { chakra, HTMLChakraProps } from "@chakra-ui/react";
 export const LogoLight = (props: HTMLChakraProps<"svg">) => (
   <chakra.svg
     color="on-accent"
-    height="19"
+    height="19px"
     width="100%"
     viewBox="0 0 184 19"
     xmlns="http://www.w3.org/2000/svg"

@@ -22,16 +22,16 @@ type Props = {
 
 export const SignInForm = (props: Props) => {
   return (
-    <Stack spacing="8">
-      <Stack spacing="6">
-        <Stack spacing="3" textAlign="center">
+    <Stack spacing={8}>
+      <Stack spacing={6}>
+        <Stack spacing={3} textAlign="center">
           <Heading size="sm">Log in to your account</Heading>
         </Stack>
       </Stack>
-      <Stack spacing="6">
+      <Stack spacing={6}>
         <form method="post" action="/api/auth/signin/email">
-          <Stack spacing="6">
-            <Stack spacing="4">
+          <Stack spacing={6}>
+            <Stack spacing={4}>
               <FormControl>
                 <Input
                   id="csrfToken"
@@ -51,7 +51,7 @@ export const SignInForm = (props: Props) => {
                 />
               </FormControl>
             </Stack>
-            <Stack spacing="4">
+            <Stack spacing={4}>
               <Button type="submit" variant="primary" width="100%">
                 Sign in with with magic link
               </Button>
@@ -73,7 +73,7 @@ export const SignInForm = (props: Props) => {
             </Stack>
           </Stack>
         </form>
-        <HStack spacing="1" justify="center">
+        <HStack spacing={1} justify="center">
           <Text color="muted">Don't have an account?</Text>
           <Button
             as="a"

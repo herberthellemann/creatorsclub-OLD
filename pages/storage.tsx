@@ -5,7 +5,7 @@ import Layout from "../components/Layout/Layout";
 const Storage: NextPage = () => {
   return (
     <Layout>
-      <Stack spacing="1">
+      <Stack spacing={1}>
         <Heading size="sm" fontWeight="medium">
           Storage Page
         </Heading>

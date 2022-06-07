@@ -21,7 +21,7 @@ export const StatProgress = (props: Props) => {
       boxShadow={useColorModeValue("sm", "sm-dark")}
       {...boxProps}
     >
-      <Box px={{ base: "4", md: "6" }} py={{ base: "5", md: "6" }}>
+      <Box px={4} py={5}>
         <Stack>
           <Text fontSize="sm" color="muted">
             {label}

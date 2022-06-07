@@ -140,7 +140,7 @@ const Step2VideoTaskParameters = ({
               <Textarea
                 placeholder="Write a short description creators can understand"
                 resize="none"
-                focusBorderColor="purple.900"
+                focusBorderColor="purple.900" // Is this line workiing? Or inheriting from a parent?
                 rows={3}
                 mb="0.25rem"
                 {...register("taskDescription", {

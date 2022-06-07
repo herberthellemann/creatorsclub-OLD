@@ -10,7 +10,7 @@ const SignIn = ({ providers, csrfToken }: any) => {
 
   return (
     <Flex width="100vw" height="100vh">
-      <Box flex="4" width="100%" height="100%" position="relative">
+      <Box flex={4} width="100%" height="100%" position="relative">
         <LogoIconDark
           position="absolute"
           top="120px"
@@ -21,7 +21,7 @@ const SignIn = ({ providers, csrfToken }: any) => {
           <SignInForm providers={providers} csrfToken={csrfToken} />
         </Center>
       </Box>
-      <Box flex="6" bgColor="purple.600"></Box>
+      <Box flex={6} bgColor="purple.600"></Box>
     </Flex>
   );
 };

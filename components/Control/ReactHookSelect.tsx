@@ -48,11 +48,11 @@ const ReactHookSelect = ({
             name={name}
             // The default value is not working for the moment
             // It is being displayed, but react-hook-form doesn't know the value apparently
-            defaultValue={
+            /* defaultValue={
               defaultValue
                 ? options.find((c) => c.value === defaultValue)
                 : null
-            }
+            } */
             options={options}
             ref={ref}
             onBlur={onBlur}

@@ -37,8 +37,8 @@ const ProductTable = (props: ProductTableProps) => {
       <Thead width="100%">
         <Tr width="100%">
           <Th>
-            <HStack spacing="3">
-              <HStack spacing="1">
+            <HStack spacing={3}>
+              <HStack spacing={1}>
                 <Text>Product</Text>
                 {/* <Icon as={ArrowDown} color="muted" boxSize="4" /> */}
               </HStack>
@@ -60,7 +60,7 @@ const ProductTable = (props: ProductTableProps) => {
             }}
           >
             <Td>
-              <HStack spacing="3">
+              <HStack spacing={3}>
                 <Square
                   borderWidth="1px"
                   borderRadius="md"
@@ -69,7 +69,7 @@ const ProductTable = (props: ProductTableProps) => {
                 >
                   <Image
                     src={product.imageUrl}
-                    boxSize="10"
+                    boxSize={10}
                     objectFit="cover"
                   />
                 </Square>
@@ -105,7 +105,7 @@ const ProductTable = (props: ProductTableProps) => {
               </Text>
             </Td>
             <Td>
-              <HStack spacing="1">
+              <HStack spacing={1}>
                 <IconButton
                   icon={<ArrowCircleRight size="1.5rem" />}
                   variant="ghost"

@@ -29,13 +29,13 @@ const stats = [
 const Home: NextPage = () => {
   return (
     <Layout>
-      <Stack spacing="1">
+      <Stack spacing={1}>
         <Heading size="sm" fontWeight="medium">
           Home Page
         </Heading>
         <Text color="muted">Your dashboard at a glance</Text>
       </Stack>
-      <SimpleGrid columns={3} gap="6">
+      <SimpleGrid columns={3} gap={6}>
         {stats.map((stat, id) => (
           <StatIcon key={id} {...stat} />
         ))}

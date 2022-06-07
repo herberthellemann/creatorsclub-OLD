@@ -24,7 +24,7 @@ const NewProductModalHeader = ({
             resetFormStep();
             onModalClose();
           }}
-          top="12px"
+          top={3}
         />
       </ModalHeader>
       <Divider borderColor="gray.300" />

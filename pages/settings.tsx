@@ -20,7 +20,7 @@ const Settings: NextPage = () => {
 
   return (
     <Layout fullHeight={true}>
-      <Stack spacing="1">
+      <Stack spacing={1}>
         <Heading size="sm" fontWeight="medium">
           Settings Page
         </Heading>

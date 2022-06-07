@@ -23,8 +23,8 @@ export default function Layout({ fullHeight, children }: LayoutProps) {
       >
         <Sidebar />
 
-        <Container py="8" flex="1" width="100%">
-          <Stack spacing="6" width="100%" height={fullHeight ? "100%" : "auto"}>
+        <Container py={8} width="100%">
+          <Stack spacing={6} width="100%" height={fullHeight ? "100%" : "auto"}>
             {children}
           </Stack>
         </Container>

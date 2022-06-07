@@ -14,7 +14,7 @@ export const UserProfile = (props: UserProfileProps) => {
       <Avatar
         name={name}
         src={image}
-        boxSize="10"
+        boxSize={10}
         borderWidth="1px"
         borderColor="on-accent"
       />

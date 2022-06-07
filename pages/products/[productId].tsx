@@ -44,9 +44,9 @@ const SingleProduct = (props: Props) => {
 
   return (
     <Layout>
-      <Stack spacing="4" direction="row" justify="space-between" align="center">
-        <Stack spacing="1">
-          <HStack spacing="1">
+      <Stack spacing={4} direction="row" justify="space-between" align="center">
+        <Stack spacing={1}>
+          <HStack spacing={1}>
             <IconButton
               icon={<ArrowLeft size="1.5rem" />}
               variant="ghost"
@@ -62,9 +62,9 @@ const SingleProduct = (props: Props) => {
           </Text>
         </Stack>
       </Stack>
-      <Card>
+      <Card maxW="3xl">
         <Stack direction="row" spacing="10" align="flex-start">
-          <Stack spacing="4">
+          <Stack spacing={4}>
             <Square
               borderWidth="1px"
               borderRadius="md"
@@ -79,7 +79,7 @@ const SingleProduct = (props: Props) => {
             </Square>
           </Stack>
           <Box>
-            <Stack spacing="1">
+            <Stack spacing={1}>
               <Text as="h2" fontWeight="bold" fontSize="xl">
                 Product details
               </Text>

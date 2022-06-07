@@ -32,23 +32,22 @@ export function Sidebar() {
   }
 
   return (
-    <Flex as="section" minH="100vh" bg="bg-canvas">
+    <Flex as="section" minH="100vh">
       <Flex
-        flex="1"
         bg="bg-accent"
         color="on-accent"
         overflowY="auto"
         width="250px"
-        py="6"
-        px="4"
+        py={6}
+        px={4}
       >
-        <Stack width="100%" justify="space-between" spacing="1">
-          <Stack spacing="6" shouldWrapChildren>
+        <Stack width="100%" justify="space-between" spacing={1}>
+          <Stack spacing={6} shouldWrapChildren>
             <LogoLight width="75%" />
             <Button variant="primary-on-accent" width="100%" mt={0}>
               New task
             </Button>
-            <Stack mt={0} spacing="1">
+            <Stack mt={0} spacing={1}>
               <NavButton label="Home" navTo="/" icon={Home} />
               <NavButton
                 label="Tasks"
@@ -64,8 +63,8 @@ export function Sidebar() {
               <NavButton label="Storage" navTo="/storage" icon={Folder} />
             </Stack>
           </Stack>
-          <Stack spacing="4">
-            <Stack spacing="1">
+          <Stack spacing={6}>
+            <Stack spacing={1}>
               <NavButton label="Settings" navTo="/settings" icon={Settings} />
             </Stack>
             <Divider />
