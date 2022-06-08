@@ -38,6 +38,8 @@ const NewTaskModal = () => {
         return "520";
       case 1:
         return "800px";
+      case 3:
+        return "880px";
       default:
         return "600px";
     }

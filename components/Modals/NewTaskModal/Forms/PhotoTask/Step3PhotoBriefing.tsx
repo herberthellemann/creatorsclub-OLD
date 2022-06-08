@@ -1,8 +1,8 @@
 import { Box, Button, ModalBody, Text } from "@chakra-ui/react";
+import NewProductModalFooter from "../../NewProductModalFooter";
+import NewProductModalHeader from "../../NewProductModalHeader";
+import { NewPhotoTaskContext } from "../../Context/NewPhotoTaskContext";
 import { useContext } from "react";
-import { NewVideoTaskContext } from "../Context/NewVideoTaskContext";
-import NewProductModalFooter from "../NewProductModalFooter";
-import NewProductModalHeader from "../NewProductModalHeader";
 
 type Props = {
   taskType: string;
@@ -13,7 +13,7 @@ type Props = {
   resetFormStep: () => void;
 };
 
-const Step5VideoSummaryAndSubmission = ({
+const Step3PhotoBriefing = ({
   taskType,
   formStep,
   nextFormStep,
@@ -21,9 +21,8 @@ const Step5VideoSummaryAndSubmission = ({
   onModalClose,
   resetFormStep,
 }: Props) => {
-  const useTaskContext = useContext(NewVideoTaskContext);
-  const { videoTask, dispatch } = useTaskContext;
-  console.log(`NEW log task state from Step5: `, videoTask);
+  const useTaskContext = useContext(NewPhotoTaskContext);
+  const { photoTask, dispatch } = useTaskContext;
 
   return (
     <Box m={0}>
@@ -33,7 +32,8 @@ const Step5VideoSummaryAndSubmission = ({
         contentType={taskType}
       />
       <ModalBody p={4}>
-        <Text>Reward and Creator Criteria</Text>
+        <Text>Briefing</Text>
+        <Text>TBD</Text>
       </ModalBody>
       <NewProductModalFooter
         formStep={formStep}
@@ -41,7 +41,12 @@ const Step5VideoSummaryAndSubmission = ({
         onModalClose={onModalClose}
         resetFormStep={resetFormStep}
         children={
-          <Button type="submit" colorScheme="purple">
+          <Button
+            type="submit"
+            colorScheme="purple"
+            //Remove this line when including the form, as React Hook Form handles this
+            onClick={nextFormStep}
+          >
             Next
           </Button>
         }
@@ -50,4 +55,4 @@ const Step5VideoSummaryAndSubmission = ({
   );
 };
 
-export default Step5VideoSummaryAndSubmission;
+export default Step3PhotoBriefing;

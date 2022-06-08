@@ -67,3 +67,46 @@ export const contentProductOptions = [
   { value: "product3", label: "Product 3" },
   { value: "product4", label: "Product 4" },
 ];
+
+export const genderOptions = [
+  { value: "female", label: "Female" },
+  { value: "male", label: "Male" },
+  { value: "non-binary", label: "Non-binary" },
+];
+
+export const ethnicGroupOptions = [
+  { value: "arabic", label: "Arabic" },
+  { value: "asian", label: "Asian" },
+  { value: "black", label: "Black" },
+  { value: "caucasian", label: "Caucasian" },
+  { value: "latino", label: "Latino" },
+  { value: "indian", label: "Indian" },
+  { value: "multiracial", label: "Multiracial" },
+];
+
+export const bodyTypeOptions = [
+  { value: "thin", label: "Thin" },
+  { value: "muscular", label: "Muscular" },
+  { value: "average", label: "Averave" },
+  { value: "curvy", label: "Curvy" },
+  { value: "plus-size", label: "Plus size" },
+];
+
+export const heightOptions = [
+  { value: "petite", label: "Petite" },
+  { value: "average", label: "Average" },
+  { value: "tall", label: "Tall" },
+];
+
+export const countryOptions = [
+  { value: "de", label: "Germany" },
+  { value: "at", label: "Austria" },
+  { value: "ch", label: "Switzerland" },
+  { value: "uk", label: "United Kingdom" },
+  { value: "se", label: "Sweden" },
+  { value: "dk", label: "Denmark" },
+  { value: "nl", label: "Netherlands" },
+  { value: "fr", label: "France" },
+  { value: "it", label: "Italy" },
+  { value: "es", label: "Spain" },
+];

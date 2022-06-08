@@ -1,4 +1,9 @@
-import { Action, ActionType, VideoTask, PhotoTask } from "./types";
+import {
+  Action,
+  ActionType,
+  VideoTask,
+  PhotoTask,
+} from "../../../../constants/taskTypes";
 
 export const videoReducer = (taskState: VideoTask, action: Action) => {
   switch (action.type) {
@@ -28,8 +33,8 @@ export const videoReducer = (taskState: VideoTask, action: Action) => {
       return {
         ...taskState,
         numberOfCreators: action.payload.numberOfCreators,
-        gender: action.payload.gender,
         ageRange: action.payload.ageRange,
+        gender: action.payload.gender,
         ageMin: action.payload.ageMin,
         ageMax: action.payload.ageMax,
         ethnicGroup: action.payload.ethnicGroup,

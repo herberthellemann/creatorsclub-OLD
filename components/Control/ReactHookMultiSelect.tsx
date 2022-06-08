@@ -1,4 +1,4 @@
-// A textfield with Chakra UI prepared for React Hook Form
+// A multi select input with Chakra UI prepared for React Hook Form
 
 import { Control, Controller, FieldValues } from "react-hook-form";
 import { Select } from "chakra-react-select";
@@ -15,7 +15,7 @@ type Props = {
   control: Control<FieldValues, any>;
 };
 
-const ReactHookSelect = ({
+const ReactHookMultiSelect = ({
   name,
   placeholder,
   defaultValue,
@@ -57,16 +57,17 @@ const ReactHookSelect = ({
                 ? options.find((c) => c.value === defaultValue)
                 : null
             } */
-            defaultValue={options.find((c) => c.value === defaultValue)}
+            //defaultValue={options.find((c) => c.value === defaultValue)}
             options={options}
             ref={ref}
             onBlur={onBlur}
-            onChange={(val) => onChange(val?.value)}
-            value={options.find((c) => c.value === value)}
+            onChange={(val) => onChange(val.map((c) => c.value))} //CHANGED
+            value={options.find((c) => c.value === value)} //CHANGED
+            colorScheme="purple" //CHANGED
             selectedOptionColor="purple"
             placeholder={placeholder}
             closeMenuOnSelect={true}
-            isMulti={false}
+            isMulti={true}
           />
         </FormControl>
       )}
@@ -74,4 +75,4 @@ const ReactHookSelect = ({
   );
 };
 
-export default ReactHookSelect;
+export default ReactHookMultiSelect;

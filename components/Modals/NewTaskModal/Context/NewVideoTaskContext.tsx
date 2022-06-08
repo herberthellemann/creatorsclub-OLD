@@ -1,6 +1,6 @@
 import { createContext, useReducer } from "react";
 import { videoReducer } from "./reducers";
-import { initialVideoTaskState } from "./types";
+import { initialVideoTaskState } from "../../../../constants/taskTypes";
 
 type NewVideoTaskContextProviderProps = {
   children: React.ReactNode;

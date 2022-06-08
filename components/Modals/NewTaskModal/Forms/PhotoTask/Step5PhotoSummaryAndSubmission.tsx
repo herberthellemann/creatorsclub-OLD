@@ -1,8 +1,8 @@
 import { Box, Button, ModalBody, Text } from "@chakra-ui/react";
-import NewProductModalFooter from "../NewProductModalFooter";
-import NewProductModalHeader from "../NewProductModalHeader";
-import { NewVideoTaskContext } from "../Context/NewVideoTaskContext";
 import { useContext } from "react";
+import { NewPhotoTaskContext } from "../../Context/NewPhotoTaskContext";
+import NewProductModalFooter from "../../NewProductModalFooter";
+import NewProductModalHeader from "../../NewProductModalHeader";
 
 type Props = {
   taskType: string;
@@ -13,7 +13,7 @@ type Props = {
   resetFormStep: () => void;
 };
 
-const Step3VideoBriefing = ({
+const Step5PhotoSummaryAndSubmission = ({
   taskType,
   formStep,
   nextFormStep,
@@ -21,9 +21,9 @@ const Step3VideoBriefing = ({
   onModalClose,
   resetFormStep,
 }: Props) => {
-  const useTaskContext = useContext(NewVideoTaskContext);
-  const { videoTask, dispatch } = useTaskContext;
-  console.log(`NEW log task state from Step 3: `, videoTask);
+  const useTaskContext = useContext(NewPhotoTaskContext);
+  const { photoTask, dispatch } = useTaskContext;
+  console.log(`NEW log task state from Step5: `, photoTask);
 
   return (
     <Box m={0}>
@@ -33,8 +33,7 @@ const Step3VideoBriefing = ({
         contentType={taskType}
       />
       <ModalBody p={4}>
-        <Text>Briefing</Text>
-        <Text>From the context. Video length: {videoTask.length}</Text>
+        <Text>Reward and Creator Criteria</Text>
       </ModalBody>
       <NewProductModalFooter
         formStep={formStep}
@@ -42,12 +41,7 @@ const Step3VideoBriefing = ({
         onModalClose={onModalClose}
         resetFormStep={resetFormStep}
         children={
-          <Button
-            type="submit"
-            colorScheme="purple"
-            //Remove this line when including the form, as React Hook Form handles this
-            onClick={nextFormStep}
-          >
+          <Button type="submit" colorScheme="purple">
             Next
           </Button>
         }
@@ -56,4 +50,4 @@ const Step3VideoBriefing = ({
   );
 };
 
-export default Step3VideoBriefing;
+export default Step5PhotoSummaryAndSubmission;

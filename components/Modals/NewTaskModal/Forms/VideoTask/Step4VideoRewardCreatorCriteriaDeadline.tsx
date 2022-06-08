@@ -1,10 +1,10 @@
 import { Box, Button, Flex, ModalBody, Text } from "@chakra-ui/react";
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
-import { NewVideoTaskContext } from "../Context/NewVideoTaskContext";
-import { ActionType } from "../Context/types";
-import NewProductModalFooter from "../NewProductModalFooter";
-import NewProductModalHeader from "../NewProductModalHeader";
+import { NewVideoTaskContext } from "../../Context/NewVideoTaskContext";
+import { ActionType } from "../../../../../constants/taskTypes";
+import NewProductModalFooter from "../../NewProductModalFooter";
+import NewProductModalHeader from "../../NewProductModalHeader";
 
 type Props = {
   taskType: string;

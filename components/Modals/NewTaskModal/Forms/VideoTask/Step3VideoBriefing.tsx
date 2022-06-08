@@ -1,7 +1,7 @@
 import { Box, Button, ModalBody, Text } from "@chakra-ui/react";
-import NewProductModalFooter from "../NewProductModalFooter";
-import NewProductModalHeader from "../NewProductModalHeader";
-import { NewPhotoTaskContext } from "../Context/NewPhotoTaskContext";
+import NewProductModalFooter from "../../NewProductModalFooter";
+import NewProductModalHeader from "../../NewProductModalHeader";
+import { NewVideoTaskContext } from "../../Context/NewVideoTaskContext";
 import { useContext } from "react";
 
 type Props = {
@@ -13,7 +13,7 @@ type Props = {
   resetFormStep: () => void;
 };
 
-const Step3PhotoBriefing = ({
+const Step3VideoBriefing = ({
   taskType,
   formStep,
   nextFormStep,
@@ -21,9 +21,9 @@ const Step3PhotoBriefing = ({
   onModalClose,
   resetFormStep,
 }: Props) => {
-  const useTaskContext = useContext(NewPhotoTaskContext);
-  const { photoTask, dispatch } = useTaskContext;
-  console.log(`NEW log task state from Step 3: `, photoTask);
+  const useTaskContext = useContext(NewVideoTaskContext);
+  const { videoTask, dispatch } = useTaskContext;
+  console.log(`NEW log task state from Step 3: `, videoTask);
 
   return (
     <Box m={0}>
@@ -34,9 +34,7 @@ const Step3PhotoBriefing = ({
       />
       <ModalBody p={4}>
         <Text>Briefing</Text>
-        <Text>
-          From the context. Photo aspectRatio: {photoTask.aspectRatio}
-        </Text>
+        <Text>From the context. Video length: {videoTask.length}</Text>
       </ModalBody>
       <NewProductModalFooter
         formStep={formStep}
@@ -58,4 +56,4 @@ const Step3PhotoBriefing = ({
   );
 };
 
-export default Step3PhotoBriefing;
+export default Step3VideoBriefing;

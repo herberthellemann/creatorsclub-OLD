@@ -17,18 +17,16 @@ import {
 import { useForm } from "react-hook-form";
 import { TaskListSquareLtr } from "@styled-icons/fluentui-system-filled";
 import {
-  videoSubtypeOptions,
-  videoLengthOptions,
+  photoSubtypeOptions,
   contentAspectRatioOptions,
   contentUseCaseOptions,
-  videoLanguageOptions,
   contentProductOptions,
-} from "../../../../constants/taskParameterOptions";
-import ReactHookSelect from "../../../Control/ReactHookSelect";
-import NewProductModalFooter from "../NewProductModalFooter";
-import NewProductModalHeader from "../NewProductModalHeader";
-import { NewVideoTaskContext } from "../Context/NewVideoTaskContext";
-import { ActionType } from "../Context/types";
+} from "../../../../../constants/taskParameterOptions";
+import ReactHookSelect from "../../../../Control/ReactHookSelect";
+import NewProductModalFooter from "../../NewProductModalFooter";
+import NewProductModalHeader from "../../NewProductModalHeader";
+import { NewPhotoTaskContext } from "../../Context/NewPhotoTaskContext";
+import { ActionType } from "../../../../../constants/taskTypes";
 import { useContext } from "react";
 
 type Props = {
@@ -40,7 +38,7 @@ type Props = {
   resetFormStep: () => void;
 };
 
-const Step2VideoTaskParameters = ({
+const Step2PhotoTaskParameters = ({
   taskType,
   formStep,
   nextFormStep,
@@ -55,22 +53,20 @@ const Step2VideoTaskParameters = ({
     formState: { errors },
   } = useForm();
 
-  const useTaskContext = useContext(NewVideoTaskContext);
-  const { dispatch } = useTaskContext;
+  const useTaskContext = useContext(NewPhotoTaskContext);
+  const { photoTask, dispatch } = useTaskContext;
 
   const onSubmit = (data: any) => {
     dispatch({
-      type: ActionType.PUSH_VIDEO_TASK_PARAMETERS,
+      type: ActionType.PUSH_PHOTO_TASK_PARAMETERS,
       payload: {
         name: data.taskName,
         description: data.taskDescription,
-        type: data.videoSubtype,
-        length: data.videoLength,
+        type: data.photoSubtype,
         aspectRatio: data.contentAspectRatio,
         //product: ProductType;
         product: data.contentProduct,
         useCase: data.contentUseCase,
-        language: data.videoLanguage,
       },
     });
     nextFormStep();
@@ -107,6 +103,7 @@ const Step2VideoTaskParameters = ({
                 />
                 <Input
                   type="text"
+                  defaultValue={photoTask.name}
                   placeholder="Task name"
                   focusBorderColor="purple.900"
                   {...register("taskName", {
@@ -138,13 +135,14 @@ const Step2VideoTaskParameters = ({
                 ) : null}
               </Flex>
               <Textarea
+                defaultValue={photoTask.description}
                 placeholder="Write a short description creators can understand"
                 resize="none"
-                focusBorderColor="purple.900" // Is this line workiing? Or inheriting from a parent?
+                focusBorderColor="purple.900"
                 rows={3}
                 mb="0.25rem"
                 {...register("taskDescription", {
-                  required: "Please enter a task name",
+                  required: "Please enter a task description",
                   minLength: {
                     value: 30,
                     message: "Min 30 characters",
@@ -158,18 +156,13 @@ const Step2VideoTaskParameters = ({
             </FormControl>
           </VStack>
           <Box flex="1" pt="0" fontSize="3xl">
-            <FormLabel mb="0.25rem">Video parameters</FormLabel>
+            <FormLabel mb="0.25rem">Photo parameters</FormLabel>
             <Stack direction="row">
               <ReactHookSelect
-                name="videoSubtype"
+                name="photoSubtype"
                 placeholder="Type"
-                options={videoSubtypeOptions}
-                control={control}
-              />
-              <ReactHookSelect
-                name="videoLength"
-                placeholder="Length"
-                options={videoLengthOptions}
+                defaultValue={photoTask.type}
+                options={photoSubtypeOptions}
                 control={control}
               />
               <ReactHookSelect
@@ -188,12 +181,6 @@ const Step2VideoTaskParameters = ({
                 name="contentUseCase"
                 placeholder="Use case"
                 options={contentUseCaseOptions}
-                control={control}
-              />
-              <ReactHookSelect
-                name="videoLanguage"
-                placeholder="Language"
-                options={videoLanguageOptions}
                 control={control}
               />
             </Stack>
@@ -215,4 +202,4 @@ const Step2VideoTaskParameters = ({
   );
 };
 
-export default Step2VideoTaskParameters;
+export default Step2PhotoTaskParameters;

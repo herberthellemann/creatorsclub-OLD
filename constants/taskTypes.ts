@@ -39,8 +39,8 @@ type PhotoBriefing = {
 
 type CreatorCriteria = {
   numberOfCreators: number;
-  gender: string[];
   ageRange: string;
+  gender: string[];
   ageMin: number;
   ageMax: number;
   ethnicGroup: string[];

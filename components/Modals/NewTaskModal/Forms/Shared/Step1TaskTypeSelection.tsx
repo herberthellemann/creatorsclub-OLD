@@ -1,9 +1,9 @@
 import { Box, Button, ModalBody, Text } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
-import { contentTypeOptions } from "../../../../constants/taskParameterOptions";
-import NewProductModalHeader from "../NewProductModalHeader";
-import NewProductModalFooter from "../NewProductModalFooter";
-import { RadioCard, RadioCardGroup } from "../RadioCardGroup";
+import { contentTypeOptions } from "../../../../../constants/taskParameterOptions";
+import NewProductModalHeader from "../../NewProductModalHeader";
+import NewProductModalFooter from "../../NewProductModalFooter";
+import { RadioCard, RadioCardGroup } from "../../RadioCardGroup";
 import { Dispatch, SetStateAction } from "react";
 
 type Props = {

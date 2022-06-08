@@ -12,7 +12,7 @@ const stepNames = [
   "Content type",
   "Task Parameters",
   "Briefing",
-  "Reward and creator criteria",
+  "Creator criteria, reward & deadline",
   "Summary and submission",
 ];
 

@@ -1,6 +1,6 @@
 import { createContext, useReducer } from "react";
 import { photoReducer } from "./reducers";
-import { initialPhotoTaskState } from "./types";
+import { initialPhotoTaskState } from "../../../../constants/taskTypes";
 
 type NewPhotoTaskContextProviderProps = {
   children: React.ReactNode;
