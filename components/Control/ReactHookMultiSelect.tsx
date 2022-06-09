@@ -7,21 +7,23 @@ import { FormControl } from "@chakra-ui/react";
 type Props = {
   name: string;
   placeholder: string;
-  defaultValue?: string;
+  defaultValues?: string[];
   options: {
     value: string;
     label: string;
   }[];
-  control: Control<FieldValues, any>;
+  control: Control<any, any>;
 };
 
 const ReactHookMultiSelect = ({
   name,
   placeholder,
-  defaultValue,
+  defaultValues,
   options,
   control,
 }: Props) => {
+  console.log("default values: ", defaultValues);
+
   return (
     <Controller
       control={control}
@@ -50,19 +52,16 @@ const ReactHookMultiSelect = ({
               }),
             }}
             name={name}
-            // The default value is not working for the moment
-            // It is being displayed, but react-hook-form doesn't know the value apparently
-            /* defaultValue={
-              defaultValue
-                ? options.find((c) => c.value === defaultValue)
-                : null
-            } */
-            //defaultValue={options.find((c) => c.value === defaultValue)}
             options={options}
             ref={ref}
             onBlur={onBlur}
             onChange={(val) => onChange(val.map((c) => c.value))} //CHANGED
             value={options.find((c) => c.value === value)} //CHANGED
+            defaultValue={
+              defaultValues
+                ? options.filter((c, index) => c.value === defaultValues[index])
+                : null
+            }
             colorScheme="purple" //CHANGED
             selectedOptionColor="purple"
             placeholder={placeholder}

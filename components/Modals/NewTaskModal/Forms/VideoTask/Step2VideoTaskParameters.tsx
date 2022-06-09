@@ -30,6 +30,7 @@ import NewProductModalHeader from "../../NewProductModalHeader";
 import { NewVideoTaskContext } from "../../Context/NewVideoTaskContext";
 import { ActionType } from "../../../../../constants/taskTypes";
 import { useContext } from "react";
+import { VideoTaskParameters } from "../../../../../constants/taskTypes";
 
 type Props = {
   taskType: string;
@@ -48,29 +49,40 @@ const Step2VideoTaskParameters = ({
   onModalClose,
   resetFormStep,
 }: Props) => {
+  const useTaskContext = useContext(NewVideoTaskContext);
+  const { videoTask, dispatch } = useTaskContext;
+
   const {
     register,
     control,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm<VideoTaskParameters>({
+    defaultValues: {
+      name: videoTask.name,
+      description: videoTask.description,
+      type: videoTask.type,
+      length: videoTask.length,
+      aspectRatio: videoTask.aspectRatio,
+      product: videoTask.product,
+      useCase: videoTask.useCase,
+      language: videoTask.language,
+    },
+  });
 
-  const useTaskContext = useContext(NewVideoTaskContext);
-  const { dispatch } = useTaskContext;
-
-  const onSubmit = (data: any) => {
+  const onSubmit = (data: VideoTaskParameters) => {
     dispatch({
       type: ActionType.PUSH_VIDEO_TASK_PARAMETERS,
       payload: {
-        name: data.taskName,
-        description: data.taskDescription,
-        type: data.videoSubtype,
-        length: data.videoLength,
-        aspectRatio: data.contentAspectRatio,
+        name: data.name,
+        description: data.description,
+        type: data.type,
+        length: data.length,
+        aspectRatio: data.aspectRatio,
         //product: ProductType;
-        product: data.contentProduct,
-        useCase: data.contentUseCase,
-        language: data.videoLanguage,
+        product: data.product,
+        useCase: data.useCase,
+        language: data.language,
       },
     });
     nextFormStep();
@@ -88,13 +100,13 @@ const Step2VideoTaskParameters = ({
           <VStack flex="1">
             <FormControl>
               <Flex alignItems="center" mb={1}>
-                <FormLabel htmlFor="taskName" mb={0}>
+                <FormLabel htmlFor="name" mb={0}>
                   Task name
                 </FormLabel>
                 <Spacer />
-                {errors.taskName ? (
+                {errors.name ? (
                   <Text fontSize="sm" color="red.500">
-                    {errors.taskName.message}
+                    {errors.name.message}
                   </Text>
                 ) : null}
               </Flex>
@@ -109,7 +121,7 @@ const Step2VideoTaskParameters = ({
                   type="text"
                   placeholder="Task name"
                   focusBorderColor="purple.900"
-                  {...register("taskName", {
+                  {...register("name", {
                     required: "Please enter a task name",
                     minLength: 3,
                     maxLength: 80,
@@ -127,13 +139,13 @@ const Step2VideoTaskParameters = ({
             </FormControl>
             <FormControl>
               <Flex alignItems="center" mb={1}>
-                <FormLabel htmlFor="taskDescription" mb={0}>
+                <FormLabel htmlFor="description" mb={0}>
                   Task description
                 </FormLabel>
                 <Spacer />
-                {errors.taskDescription ? (
+                {errors.description ? (
                   <Text fontSize="sm" color="red.500">
-                    {errors.taskDescription.message}
+                    {errors.description.message}
                   </Text>
                 ) : null}
               </Flex>
@@ -143,7 +155,7 @@ const Step2VideoTaskParameters = ({
                 focusBorderColor="purple.900" // Is this line workiing? Or inheriting from a parent?
                 rows={3}
                 mb="0.25rem"
-                {...register("taskDescription", {
+                {...register("description", {
                   required: "Please enter a task description",
                   minLength: {
                     value: 30,
@@ -161,37 +173,37 @@ const Step2VideoTaskParameters = ({
             <FormLabel mb="0.25rem">Video parameters</FormLabel>
             <Stack direction="row">
               <ReactHookSelect
-                name="videoSubtype"
+                name="type"
                 placeholder="Type"
                 options={videoSubtypeOptions}
                 control={control}
               />
               <ReactHookSelect
-                name="videoLength"
+                name="length"
                 placeholder="Length"
                 options={videoLengthOptions}
                 control={control}
               />
               <ReactHookSelect
-                name="contentAspectRatio"
+                name="aspectRatio"
                 placeholder="Format"
                 options={contentAspectRatioOptions}
                 control={control}
               />
               <ReactHookSelect
-                name="contentProduct"
+                name="product"
                 placeholder="Product"
                 options={contentProductOptions}
                 control={control}
               />
               <ReactHookSelect
-                name="contentUseCase"
+                name="useCase"
                 placeholder="Use case"
                 options={contentUseCaseOptions}
                 control={control}
               />
               <ReactHookSelect
-                name="videoLanguage"
+                name="language"
                 placeholder="Language"
                 options={videoLanguageOptions}
                 control={control}
@@ -205,12 +217,11 @@ const Step2VideoTaskParameters = ({
         prevFormStep={prevFormStep}
         onModalClose={onModalClose}
         resetFormStep={resetFormStep}
-        children={
-          <Button type="submit" colorScheme="purple">
-            Next
-          </Button>
-        }
-      />
+      >
+        <Button type="submit" colorScheme="purple">
+          Next
+        </Button>
+      </NewProductModalFooter>
     </Box>
   );
 };

@@ -28,6 +28,7 @@ import NewProductModalHeader from "../../NewProductModalHeader";
 import { NewPhotoTaskContext } from "../../Context/NewPhotoTaskContext";
 import { ActionType } from "../../../../../constants/taskTypes";
 import { useContext } from "react";
+import { PhotoTaskParameters } from "../../../../../constants/taskTypes";
 
 type Props = {
   taskType: string;
@@ -46,31 +47,42 @@ const Step2PhotoTaskParameters = ({
   onModalClose,
   resetFormStep,
 }: Props) => {
+  const useTaskContext = useContext(NewPhotoTaskContext);
+  const { photoTask, dispatch } = useTaskContext;
+
   const {
     register,
     control,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm<PhotoTaskParameters>({
+    defaultValues: {
+      name: photoTask.name,
+      description: photoTask.description,
+      type: photoTask.type,
+      aspectRatio: photoTask.aspectRatio,
+      product: photoTask.product,
+      useCase: photoTask.useCase,
+    },
+  });
 
-  const useTaskContext = useContext(NewPhotoTaskContext);
-  const { photoTask, dispatch } = useTaskContext;
-
-  const onSubmit = (data: any) => {
+  const onSubmit = (data: PhotoTaskParameters) => {
     dispatch({
       type: ActionType.PUSH_PHOTO_TASK_PARAMETERS,
       payload: {
-        name: data.taskName,
-        description: data.taskDescription,
-        type: data.photoSubtype,
-        aspectRatio: data.contentAspectRatio,
+        name: data.name,
+        description: data.description,
+        type: data.type,
+        aspectRatio: data.aspectRatio,
         //product: ProductType;
-        product: data.contentProduct,
-        useCase: data.contentUseCase,
+        product: data.product,
+        useCase: data.useCase,
       },
     });
     nextFormStep();
   };
+
+  console.log(photoTask);
 
   return (
     <Box as="form" onSubmit={handleSubmit(onSubmit)}>
@@ -84,13 +96,13 @@ const Step2PhotoTaskParameters = ({
           <VStack flex="1">
             <FormControl>
               <Flex alignItems="center" mb={1}>
-                <FormLabel htmlFor="taskName" mb={0}>
+                <FormLabel htmlFor="name" mb={0}>
                   Task name
                 </FormLabel>
                 <Spacer />
-                {errors.taskName ? (
+                {errors.name ? (
                   <Text fontSize="sm" color="red.500">
-                    {errors.taskName.message}
+                    {errors.name.message}
                   </Text>
                 ) : null}
               </Flex>
@@ -106,7 +118,7 @@ const Step2PhotoTaskParameters = ({
                   defaultValue={photoTask.name}
                   placeholder="Task name"
                   focusBorderColor="purple.900"
-                  {...register("taskName", {
+                  {...register("name", {
                     required: "Please enter a task name",
                     minLength: 3,
                     maxLength: 80,
@@ -124,13 +136,13 @@ const Step2PhotoTaskParameters = ({
             </FormControl>
             <FormControl>
               <Flex alignItems="center" mb={1}>
-                <FormLabel htmlFor="taskDescription" mb={0}>
+                <FormLabel htmlFor="description" mb={0}>
                   Task description
                 </FormLabel>
                 <Spacer />
-                {errors.taskDescription ? (
+                {errors.description ? (
                   <Text fontSize="sm" color="red.500">
-                    {errors.taskDescription.message}
+                    {errors.description.message}
                   </Text>
                 ) : null}
               </Flex>
@@ -141,7 +153,7 @@ const Step2PhotoTaskParameters = ({
                 focusBorderColor="purple.900"
                 rows={3}
                 mb="0.25rem"
-                {...register("taskDescription", {
+                {...register("description", {
                   required: "Please enter a task description",
                   minLength: {
                     value: 30,
@@ -159,26 +171,25 @@ const Step2PhotoTaskParameters = ({
             <FormLabel mb="0.25rem">Photo parameters</FormLabel>
             <Stack direction="row">
               <ReactHookSelect
-                name="photoSubtype"
+                name="type"
                 placeholder="Type"
-                defaultValue={photoTask.type}
                 options={photoSubtypeOptions}
                 control={control}
               />
               <ReactHookSelect
-                name="contentAspectRatio"
+                name="aspectRatio"
                 placeholder="Format"
                 options={contentAspectRatioOptions}
                 control={control}
               />
               <ReactHookSelect
-                name="contentProduct"
+                name="product"
                 placeholder="Product"
                 options={contentProductOptions}
                 control={control}
               />
               <ReactHookSelect
-                name="contentUseCase"
+                name="useCase"
                 placeholder="Use case"
                 options={contentUseCaseOptions}
                 control={control}
@@ -192,12 +203,11 @@ const Step2PhotoTaskParameters = ({
         prevFormStep={prevFormStep}
         onModalClose={onModalClose}
         resetFormStep={resetFormStep}
-        children={
-          <Button type="submit" colorScheme="purple">
-            Next
-          </Button>
-        }
-      />
+      >
+        <Button type="submit" colorScheme="purple">
+          Next
+        </Button>
+      </NewProductModalFooter>
     </Box>
   );
 };

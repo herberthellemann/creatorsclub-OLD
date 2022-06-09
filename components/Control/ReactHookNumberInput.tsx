@@ -9,7 +9,6 @@ import {
   NumberInputField,
   NumberInputStepper,
 } from "@chakra-ui/react";
-import { PeopleCommunity } from "@styled-icons/fluentui-system-filled";
 import { Control, Controller, FieldValues } from "react-hook-form";
 import { StyledIcon } from "@styled-icons/styled-icon";
 
@@ -20,7 +19,7 @@ type Props = {
   step: number;
   defaultValue: number;
   icon: StyledIcon;
-  control: Control<FieldValues, any>;
+  control: Control<any, any>;
 };
 
 const ReactHookNumberInput = (props: Props) => {
@@ -31,14 +30,14 @@ const ReactHookNumberInput = (props: Props) => {
       name={name}
       control={control}
       rules={{ required: true }}
-      render={({ field: { ref, ...restField } }) => (
+      render={({ field }) => (
         <InputGroup>
           <InputLeftElement
             pointerEvents="none"
             children={Icon ? <Icon size="16px" /> : null}
           />
           <NumberInput
-            {...restField}
+            {...field}
             focusBorderColor="purple.600"
             width="full"
             allowMouseWheel

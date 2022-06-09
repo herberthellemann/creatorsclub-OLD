@@ -6,7 +6,7 @@ import { Control, Controller, FieldValues } from "react-hook-form";
 type Props = {
   name: string;
   defaultValue: string;
-  control: Control<FieldValues, any>;
+  control: Control<any, any>;
 };
 
 const ReactHookDateInput = (props: Props) => {

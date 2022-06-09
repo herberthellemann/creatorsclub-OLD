@@ -1,4 +1,4 @@
-type VideoTaskParameters = {
+export type VideoTaskParameters = {
   name: string;
   description: string;
   type: string;
@@ -10,7 +10,7 @@ type VideoTaskParameters = {
   language: string;
 };
 
-type VideoBriefing = {
+export type VideoBriefing = {
   //scenes: Scene[];
   scenes: string[];
   dos: string;
@@ -18,7 +18,7 @@ type VideoBriefing = {
   otherInfo: string;
 };
 
-type PhotoTaskParameters = {
+export type PhotoTaskParameters = {
   name: string;
   description: string;
   type: string;
@@ -26,10 +26,9 @@ type PhotoTaskParameters = {
   //product: ProductType;
   product: string;
   useCase: string;
-  ageRange: string;
 };
 
-type PhotoBriefing = {
+export type PhotoBriefing = {
   //shots: Shot[];
   shots: string[];
   dos: string;
@@ -37,9 +36,10 @@ type PhotoBriefing = {
   otherInfo: string;
 };
 
-type CreatorCriteria = {
+export type CreatorCriteria = {
   numberOfCreators: number;
-  ageRange: string;
+  //ageRange: string;
+  ageRange: [number, number];
   gender: string[];
   ageMin: number;
   ageMax: number;
@@ -49,13 +49,13 @@ type CreatorCriteria = {
   countries: string[];
 };
 
-type CreatorReward = {
+export type CreatorReward = {
   cashReward: number;
   giveawayReward: number;
   totalReward: number;
 };
 
-type Deadline = {
+export type Deadline = {
   deadline: Date;
 };
 
@@ -84,11 +84,11 @@ export const initialVideoTaskState: VideoTask = {
   dos: "",
   donts: "",
   otherInfo: "",
-  numberOfCreators: 0,
+  numberOfCreators: 1,
   gender: ["", ""],
-  ageRange: "",
-  ageMin: 0,
-  ageMax: 0,
+  ageRange: [18, 65],
+  ageMin: 18,
+  ageMax: 65,
   ethnicGroup: ["", "", ""],
   bodyType: ["", ""],
   height: ["", ""],
@@ -110,11 +110,11 @@ export const initialPhotoTaskState: PhotoTask = {
   dos: "",
   donts: "",
   otherInfo: "",
-  numberOfCreators: 0,
+  numberOfCreators: 1,
   gender: ["", ""],
-  ageRange: "",
-  ageMin: 0,
-  ageMax: 0,
+  ageRange: [18, 65],
+  ageMin: 18,
+  ageMax: 65,
   ethnicGroup: ["", "", ""],
   bodyType: ["", ""],
   height: ["", ""],

@@ -7,21 +7,14 @@ import { FormControl } from "@chakra-ui/react";
 type Props = {
   name: string;
   placeholder: string;
-  defaultValue?: string;
   options: {
     value: string;
     label: string;
   }[];
-  control: Control<FieldValues, any>;
+  control: Control<any, any>;
 };
 
-const ReactHookSelect = ({
-  name,
-  placeholder,
-  defaultValue,
-  options,
-  control,
-}: Props) => {
+const ReactHookSelect = ({ name, placeholder, options, control }: Props) => {
   return (
     <Controller
       control={control}
@@ -50,14 +43,6 @@ const ReactHookSelect = ({
               }),
             }}
             name={name}
-            // The default value is not working for the moment
-            // It is being displayed, but react-hook-form doesn't know the value apparently
-            /* defaultValue={
-              defaultValue
-                ? options.find((c) => c.value === defaultValue)
-                : null
-            } */
-            defaultValue={options.find((c) => c.value === defaultValue)}
             options={options}
             ref={ref}
             onBlur={onBlur}

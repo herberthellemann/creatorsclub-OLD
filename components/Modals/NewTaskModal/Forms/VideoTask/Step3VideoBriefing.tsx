@@ -41,17 +41,11 @@ const Step3VideoBriefing = ({
         prevFormStep={prevFormStep}
         onModalClose={onModalClose}
         resetFormStep={resetFormStep}
-        children={
-          <Button
-            type="submit"
-            colorScheme="purple"
-            //Remove this line when including the form, as React Hook Form handles this
-            onClick={nextFormStep}
-          >
-            Next
-          </Button>
-        }
-      />
+      >
+        <Button type="submit" colorScheme="purple" onClick={nextFormStep}>
+          Next
+        </Button>
+      </NewProductModalFooter>
     </Box>
   );
 };

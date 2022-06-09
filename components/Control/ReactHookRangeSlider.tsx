@@ -20,7 +20,7 @@ type Props = {
   step: number;
   defaults: [number, number];
   marks: number[];
-  control: Control<FieldValues, any>;
+  control: Control<any, any>;
 };
 
 const ReactHookRangeSlider = (props: Props) => {

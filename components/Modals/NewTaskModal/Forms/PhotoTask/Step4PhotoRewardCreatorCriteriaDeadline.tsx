@@ -29,6 +29,11 @@ import {
 import ReactHookRangeSlider from "../../../../Control/ReactHookRangeSlider";
 import ReactHookNumberInput from "../../../../Control/ReactHookNumberInput";
 import ReactHookDateInput from "../../../../Control/ReactHookDateInput";
+import {
+  CreatorCriteria,
+  CreatorReward,
+  Deadline,
+} from "../../../../../constants/taskTypes";
 
 type Props = {
   taskType: string;
@@ -39,6 +44,8 @@ type Props = {
   resetFormStep: () => void;
 };
 
+type StepTypes = CreatorCriteria & CreatorReward & Deadline;
+
 const Step4PhotoRewardCreatorCriteriaDeadline = ({
   taskType,
   formStep,
@@ -47,20 +54,35 @@ const Step4PhotoRewardCreatorCriteriaDeadline = ({
   onModalClose,
   resetFormStep,
 }: Props) => {
-  const { control, handleSubmit } = useForm();
+  const useTaskContext = useContext(NewPhotoTaskContext);
+  const { photoTask, dispatch } = useTaskContext;
 
+  const { control, handleSubmit } = useForm<StepTypes>({
+    defaultValues: {
+      numberOfCreators: photoTask.numberOfCreators,
+      ageRange: photoTask.ageRange,
+      gender: photoTask.gender,
+      ethnicGroup: photoTask.ethnicGroup,
+      bodyType: photoTask.bodyType,
+      height: photoTask.height,
+      cashReward: photoTask.cashReward,
+      deadline: photoTask.deadline,
+    },
+  });
+
+  // Set min reward and recommendation defaults
   const minReward: number = taskType === "photo" ? 20 : 60;
   const recommendation: number = taskType === "photo" ? 25 : 80;
+
+  // Set a default deadline 3 weeks after today
   const today: Date = new Date();
   today.setMinutes(today.getMinutes() - today.getTimezoneOffset());
   today.setDate(today.getDate() + 21);
   const defaultDeadline = today.toJSON().slice(0, 10);
   const giveawayValueTEMP: number = 13;
 
-  const useTaskContext = useContext(NewPhotoTaskContext);
-  const { photoTask, dispatch } = useTaskContext;
-
-  const onSubmit = (data: any) => {
+  const onSubmit = (data: StepTypes) => {
+    console.log("data step 3: ", data);
     dispatch({
       type: ActionType.PUSH_CREATOR_CRITERIA,
       payload: {
@@ -68,7 +90,9 @@ const Step4PhotoRewardCreatorCriteriaDeadline = ({
         ageRange: data.ageRange,
         gender: data.gender,
         ageMin: data.ageRange[0],
+        //ageMin: data.ageRange[0] ? data.ageRange[0] : -1,
         ageMax: data.ageRange[1],
+        //ageMax: data.ageRange[0] ? data.ageRange[0] : -1,
         ethnicGroup: data.ethnicGroup,
         bodyType: data.bodyType,
         height: data.height,
@@ -120,6 +144,7 @@ const Step4PhotoRewardCreatorCriteriaDeadline = ({
                   max={20}
                   step={1}
                   defaultValue={1}
+                  //defaultValue={photoTask.numberOfCreators}
                   icon={PeopleCommunity}
                   control={control}
                 />
@@ -135,7 +160,8 @@ const Step4PhotoRewardCreatorCriteriaDeadline = ({
                     max={65}
                     minRange={7}
                     step={1}
-                    defaults={[18, 45]}
+                    //defaults={[18, 45]}
+                    defaults={photoTask.ageRange}
                     marks={[18, 25, 35, 45, 55, 65]}
                     control={control}
                   />
@@ -151,6 +177,7 @@ const Step4PhotoRewardCreatorCriteriaDeadline = ({
                     placeholder="Gender"
                     options={genderOptions}
                     control={control}
+                    defaultValues={photoTask.gender}
                   />
                 </Flex>
               </FormControl>
@@ -261,12 +288,11 @@ const Step4PhotoRewardCreatorCriteriaDeadline = ({
         prevFormStep={prevFormStep}
         onModalClose={onModalClose}
         resetFormStep={resetFormStep}
-        children={
-          <Button type="submit" colorScheme="purple">
-            Continue
-          </Button>
-        }
-      />
+      >
+        <Button type="submit" colorScheme="purple">
+          Continue
+        </Button>
+      </NewProductModalFooter>
     </Box>
   );
 };

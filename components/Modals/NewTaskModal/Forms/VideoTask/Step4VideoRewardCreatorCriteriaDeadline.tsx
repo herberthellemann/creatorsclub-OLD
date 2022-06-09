@@ -69,12 +69,11 @@ const Step4VideoRewardCreatorCriteriaDeadline = ({
         prevFormStep={prevFormStep}
         onModalClose={onModalClose}
         resetFormStep={resetFormStep}
-        children={
-          <Button type="submit" colorScheme="purple">
-            Next
-          </Button>
-        }
-      />
+      >
+        <Button type="submit" colorScheme="purple">
+          Next
+        </Button>
+      </NewProductModalFooter>
     </Box>
   );
 };
