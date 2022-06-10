@@ -55,6 +55,7 @@ export const videoReducer = (taskState: VideoTask, action: Action) => {
       return {
         ...taskState,
         deadline: action.payload.deadline,
+        deadlineString: action.payload.deadlineString,
       };
     }
 
@@ -112,6 +113,7 @@ export const photoReducer = (taskState: PhotoTask, action: Action) => {
       return {
         ...taskState,
         deadline: action.payload.deadline,
+        deadlineString: action.payload.deadlineString,
       };
     }
 

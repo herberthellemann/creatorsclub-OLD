@@ -65,24 +65,25 @@ const Step4PhotoRewardCreatorCriteriaDeadline = ({
       ethnicGroup: photoTask.ethnicGroup,
       bodyType: photoTask.bodyType,
       height: photoTask.height,
+      countries: photoTask.countries,
       cashReward: photoTask.cashReward,
-      deadline: photoTask.deadline,
+      deadlineString: photoTask.deadline.toISOString().slice(0, 10),
     },
   });
 
   // Set min reward and recommendation defaults
   const minReward: number = taskType === "photo" ? 20 : 60;
-  const recommendation: number = taskType === "photo" ? 25 : 80;
 
   // Set a default deadline 3 weeks after today
-  const today: Date = new Date();
+  /* const today: Date = new Date();
   today.setMinutes(today.getMinutes() - today.getTimezoneOffset());
   today.setDate(today.getDate() + 21);
-  const defaultDeadline = today.toJSON().slice(0, 10);
+  const defaultDeadline = today.toJSON().slice(0, 10); */
+
   const giveawayValueTEMP: number = 13;
 
   const onSubmit = (data: StepTypes) => {
-    console.log("data step 3: ", data);
+    //console.log("data step 3: ", data);
     dispatch({
       type: ActionType.PUSH_CREATOR_CRITERIA,
       payload: {
@@ -107,10 +108,21 @@ const Step4PhotoRewardCreatorCriteriaDeadline = ({
         totalReward: Number(data.cashReward) + giveawayValueTEMP,
       },
     });
+    const now: Date = new Date();
     dispatch({
       type: ActionType.PUSH_DEADLINE,
       payload: {
-        deadline: data.deadline,
+        //deadline: data.deadlineString,
+        deadline: new Date(
+          Number(data.deadlineString.slice(0, 4)),
+          Number(data.deadlineString.slice(5, 7)) - 1,
+          Number(data.deadlineString.slice(8, 10)),
+          now.getHours(),
+          now.getMinutes(),
+          now.getSeconds(),
+          now.getMilliseconds()
+        ),
+        deadlineString: data.deadlineString,
       },
     });
     nextFormStep();
@@ -191,6 +203,7 @@ const Step4PhotoRewardCreatorCriteriaDeadline = ({
                     placeholder="Ethnic group"
                     options={ethnicGroupOptions}
                     control={control}
+                    defaultValues={photoTask.ethnicGroup}
                   />
                 </Flex>
               </FormControl>
@@ -204,6 +217,7 @@ const Step4PhotoRewardCreatorCriteriaDeadline = ({
                     placeholder="Body type"
                     options={bodyTypeOptions}
                     control={control}
+                    defaultValues={photoTask.bodyType}
                   />
                 </Flex>
               </FormControl>
@@ -217,6 +231,7 @@ const Step4PhotoRewardCreatorCriteriaDeadline = ({
                     placeholder="Height"
                     options={heightOptions}
                     control={control}
+                    defaultValues={photoTask.height}
                   />
                 </Flex>
               </FormControl>
@@ -230,6 +245,7 @@ const Step4PhotoRewardCreatorCriteriaDeadline = ({
                     placeholder="Countries"
                     options={countryOptions}
                     control={control}
+                    defaultValues={photoTask.countries}
                   />
                 </Flex>
               </FormControl>
@@ -244,7 +260,7 @@ const Step4PhotoRewardCreatorCriteriaDeadline = ({
                 <HStack fontSize="0.75rem" color="gray.500">
                   <Text>Our recommendation: </Text>
                   <Code variant="subtle" colorScheme="gray">
-                    {recommendation},00 €
+                    {photoTask.cashReward},00 €
                   </Code>
                 </HStack>
               </Box>
@@ -257,7 +273,7 @@ const Step4PhotoRewardCreatorCriteriaDeadline = ({
                   min={minReward}
                   max={1000}
                   step={5}
-                  defaultValue={recommendation}
+                  defaultValue={photoTask.cashReward}
                   icon={Money}
                   control={control}
                 />
@@ -270,12 +286,16 @@ const Step4PhotoRewardCreatorCriteriaDeadline = ({
                 </Text>
               </Box>
               <FormControl>
-                <FormLabel htmlFor="deadline" mb={1}>
+                <FormLabel htmlFor="deadlineString" mb={1}>
                   Task deadline
                 </FormLabel>
                 <ReactHookDateInput
-                  name={"deadline"}
-                  defaultValue={defaultDeadline}
+                  name={"deadlineString"}
+                  defaultValue={photoTask.deadline}
+                  //defaultValue={defaultDeadline.toISOString()}
+                  /* defaultValue={createDeadline(photoTask.deadline)
+                    .toISOString()
+                    .slice(0, 10)} */
                   control={control}
                 />
               </FormControl>

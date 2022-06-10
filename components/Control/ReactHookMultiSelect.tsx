@@ -22,7 +22,7 @@ const ReactHookMultiSelect = ({
   options,
   control,
 }: Props) => {
-  console.log("default values: ", defaultValues);
+  console.log(`Default values for ${name}: `, defaultValues);
 
   return (
     <Controller
@@ -59,7 +59,7 @@ const ReactHookMultiSelect = ({
             value={options.find((c) => c.value === value)} //CHANGED
             defaultValue={
               defaultValues
-                ? options.filter((c, index) => c.value === defaultValues[index])
+                ? options.filter((c) => defaultValues.includes(c.value))
                 : null
             }
             colorScheme="purple" //CHANGED

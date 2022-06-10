@@ -82,8 +82,6 @@ const Step2PhotoTaskParameters = ({
     nextFormStep();
   };
 
-  console.log(photoTask);
-
   return (
     <Box as="form" onSubmit={handleSubmit(onSubmit)}>
       <NewProductModalHeader

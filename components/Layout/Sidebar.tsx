@@ -25,7 +25,6 @@ export function Sidebar() {
 
   //Fetch session data
   if (session) {
-    console.log("Session available");
     sessionEmail = session.user?.email;
     sessionName = session.user?.name;
     sessionImageUrl = session.user?.image;

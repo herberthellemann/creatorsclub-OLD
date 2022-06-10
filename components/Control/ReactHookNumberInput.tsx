@@ -1,6 +1,7 @@
 // A number input with Chakra UI prepared for React Hook Form
 
 import {
+  FormControl,
   InputLeftElement,
   InputGroup,
   NumberInput,
@@ -17,7 +18,7 @@ type Props = {
   min: number;
   max: number;
   step: number;
-  defaultValue: number;
+  defaultValue?: number;
   icon: StyledIcon;
   control: Control<any, any>;
 };
@@ -30,29 +31,31 @@ const ReactHookNumberInput = (props: Props) => {
       name={name}
       control={control}
       rules={{ required: true }}
-      render={({ field }) => (
-        <InputGroup>
-          <InputLeftElement
-            pointerEvents="none"
-            children={Icon ? <Icon size="16px" /> : null}
-          />
-          <NumberInput
-            {...field}
-            focusBorderColor="purple.600"
-            width="full"
-            allowMouseWheel
-            min={min}
-            max={max}
-            step={step}
-            defaultValue={defaultValue}
-          >
-            <NumberInputField pl={8} />
-            <NumberInputStepper>
-              <NumberIncrementStepper />
-              <NumberDecrementStepper />
-            </NumberInputStepper>
-          </NumberInput>
-        </InputGroup>
+      render={({ field, fieldState: { invalid } }) => (
+        <FormControl isInvalid={invalid}>
+          <InputGroup>
+            <InputLeftElement
+              pointerEvents="none"
+              children={Icon ? <Icon size="16px" /> : null}
+            />
+            <NumberInput
+              {...field}
+              focusBorderColor="purple.600"
+              width="full"
+              allowMouseWheel
+              min={min}
+              max={max}
+              step={step}
+              defaultValue={defaultValue}
+            >
+              <NumberInputField pl={8} />
+              <NumberInputStepper>
+                <NumberIncrementStepper />
+                <NumberDecrementStepper />
+              </NumberInputStepper>
+            </NumberInput>
+          </InputGroup>
+        </FormControl>
       )}
     />
   );

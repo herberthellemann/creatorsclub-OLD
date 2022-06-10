@@ -23,7 +23,7 @@ const Step5PhotoSummaryAndSubmission = ({
 }: Props) => {
   const useTaskContext = useContext(NewPhotoTaskContext);
   const { photoTask, dispatch } = useTaskContext;
-  console.log(`NEW log task state from Step5: `, photoTask);
+  console.log(`Task data from Step5: `, photoTask);
 
   return (
     <Box m={0}>

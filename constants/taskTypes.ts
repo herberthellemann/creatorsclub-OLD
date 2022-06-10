@@ -57,6 +57,7 @@ export type CreatorReward = {
 
 export type Deadline = {
   deadline: Date;
+  deadlineString: string;
 };
 
 export type VideoTask = VideoTaskParameters &
@@ -86,17 +87,18 @@ export const initialVideoTaskState: VideoTask = {
   otherInfo: "",
   numberOfCreators: 1,
   gender: ["", ""],
-  ageRange: [18, 65],
+  ageRange: [18, 45],
   ageMin: 18,
-  ageMax: 65,
+  ageMax: 45,
   ethnicGroup: ["", "", ""],
   bodyType: ["", ""],
   height: ["", ""],
   countries: ["", "", ""],
-  cashReward: 0,
+  cashReward: 80, // Set to the minimum recommended
   giveawayReward: 0,
   totalReward: 0,
-  deadline: new Date(),
+  deadline: setDeadline(new Date(), 21),
+  deadlineString: setDeadline(new Date(), 21).toISOString().slice(0, 10),
 };
 
 export const initialPhotoTaskState: PhotoTask = {
@@ -112,17 +114,18 @@ export const initialPhotoTaskState: PhotoTask = {
   otherInfo: "",
   numberOfCreators: 1,
   gender: ["", ""],
-  ageRange: [18, 65],
+  ageRange: [18, 45],
   ageMin: 18,
-  ageMax: 65,
+  ageMax: 45,
   ethnicGroup: ["", "", ""],
   bodyType: ["", ""],
   height: ["", ""],
   countries: ["", "", ""],
-  cashReward: 0,
+  cashReward: 25, // Set to the minimum recommended
   giveawayReward: 0,
   totalReward: 0,
-  deadline: new Date(),
+  deadline: setDeadline(new Date(), 21),
+  deadlineString: setDeadline(new Date(), 21).toISOString().slice(0, 10),
 };
 
 export enum ActionType {
@@ -149,3 +152,10 @@ export type Action =
   | { type: ActionType.PUSH_CREATOR_CRITERIA; payload: CreatorCriteria }
   | { type: ActionType.PUSH_REWARD; payload: CreatorReward }
   | { type: ActionType.PUSH_DEADLINE; payload: Deadline };
+
+function setDeadline(date: Date, daysAhead?: number) {
+  //date.setMinutes(date.getMinutes() - date.getTimezoneOffset());
+  const daysShift: number = daysAhead ? daysAhead : 0;
+  date.setDate(date.getDate() + daysShift);
+  return date;
+}
