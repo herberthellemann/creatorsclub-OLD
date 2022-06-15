@@ -11,6 +11,7 @@ import {
   VehicleTruckProfile,
 } from "@styled-icons/fluentui-system-filled";
 import { useSession } from "next-auth/react";
+import NewTaskModal from "../Modals/NewTaskModal";
 
 let sessionEmail: string | null | undefined;
 let sessionName: string | null | undefined;
@@ -43,9 +44,7 @@ export function Sidebar() {
         <Stack width="100%" justify="space-between" spacing={1}>
           <Stack spacing={6} shouldWrapChildren>
             <LogoLight width="75%" />
-            <Button variant="primary-on-accent" width="100%" mt={0}>
-              New task
-            </Button>
+            <NewTaskModal buttonVariant="primary-on-accent" width="100%" />
             <Stack mt={0} spacing={1}>
               <NavButton label="Home" navTo="/" icon={Home} />
               <NavButton

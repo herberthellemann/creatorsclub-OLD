@@ -4,7 +4,6 @@ import {
   As,
   Badge,
   Box,
-  Center,
   Editable,
   EditableInput,
   EditablePreview,
@@ -12,6 +11,9 @@ import {
   Flex,
   Icon,
   Image,
+  Tag,
+  TagLabel,
+  TagLeftIcon,
   Text,
 } from "@chakra-ui/react";
 import {
@@ -23,6 +25,8 @@ import {
   WeatherSunny,
   MoviesAndTv,
 } from "@styled-icons/fluentui-system-filled";
+import { sceneFocusOptions } from "../../constants/taskParameterOptions";
+import ReactHookSelectIcon from "./MultiSelectWithIcon";
 
 // TEST EXTRA PARAMETERS
 type extraParameter = {
@@ -43,7 +47,7 @@ const SceneCard = () => {
     <Flex
       flexDirection="row"
       alignItems="flex-start"
-      overflow="hidden"
+      //overflow="hidden"
       position="relative"
       width="min-content"
       fontSize="sm"
@@ -159,6 +163,13 @@ const SceneCard = () => {
                 </Flex>
               </Badge>
             ))}
+          </Flex>
+          <Flex flexDirection="row" gap={2}>
+            <ReactHookSelectIcon
+              name={"sceneShot"}
+              placeholder={"Add extra parameters"}
+              options={sceneFocusOptions}
+            />
           </Flex>
         </Flex>
       </Flex>

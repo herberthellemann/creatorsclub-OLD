@@ -65,7 +65,7 @@ const ReactHookMultiSelect = ({
             colorScheme="purple" //CHANGED
             selectedOptionColor="purple"
             placeholder={placeholder}
-            closeMenuOnSelect={true}
+            closeMenuOnSelect={false}
             isMulti={true}
           />
         </FormControl>

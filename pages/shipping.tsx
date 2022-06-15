@@ -3,6 +3,7 @@ import type { NextPage } from "next";
 import Layout from "../components/Layout/Layout";
 import Scene from "../components/Control/SceneCardOutline";
 import SceneCard from "../components/Control/SceneCard";
+import SceneCardNew from "../components/Control/SceneCardNew";
 
 const Shipping: NextPage = () => {
   return (
@@ -13,8 +14,7 @@ const Shipping: NextPage = () => {
         </Heading>
         <Text color="muted">All task shipments pieces at a glance</Text>
         <Stack display="inline-block" gap={4}>
-          {/* <Scene /> */}
-          <SceneCard />
+          <SceneCardNew />
         </Stack>
       </Stack>
     </Layout>

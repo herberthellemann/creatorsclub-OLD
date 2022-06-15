@@ -1,3 +1,19 @@
+// Parameters for all select inputs in the new task form
+
+import {
+  Cube,
+  FastForward,
+  People,
+  PersonFeedback,
+  Play,
+  SplitHorizontal,
+  WeatherMoon,
+  WeatherSunny,
+  Location,
+} from "@styled-icons/fluentui-system-filled";
+
+// TASK PARAMETERS
+
 export const contentTypeOptions = [
   {
     value: "video",
@@ -68,6 +84,8 @@ export const contentProductOptions = [
   { value: "product4", label: "Product 4" },
 ];
 
+// CREATOR CRITERIA
+
 export const genderOptions = [
   { value: "female", label: "Female" },
   { value: "male", label: "Male" },
@@ -109,4 +127,45 @@ export const countryOptions = [
   { value: "fr", label: "France" },
   { value: "it", label: "Italy" },
   { value: "es", label: "Spain" },
+];
+
+// VIDEO SCENE PARAMETERS
+
+export const sceneTypeOptions = [
+  { value: "intro", label: "Intro", color: "#FBBF24" },
+  { value: "benefit", label: "Benefit", color: "#2DD4BF" },
+  { value: "educate", label: "Educate", color: "#F472B6" },
+  { value: "reference", label: "Reference", color: "#FB7185" },
+  { value: "solution", label: "Solution", color: "#4ADE80" },
+  { value: "impression", label: "Impression", color: "#38BDF8" },
+  { value: "promo", label: "Promo code", color: "#FB923C" },
+  { value: "cta", label: "Call to action", color: "#C084FC" },
+];
+
+export const sceneFocusOptions = [
+  { value: "creator", label: "Creator", icon: People },
+  { value: "product", label: "Product", icon: Cube },
+  {
+    value: "creatorAndProduct",
+    label: "Creator & Product",
+    icon: SplitHorizontal,
+  },
+  { value: "splitScreen", label: "Split screen", icon: PersonFeedback },
+];
+
+export const lightingOptions = [
+  { value: "day", label: "Day", icon: WeatherSunny },
+  { value: "night", label: "Night", icon: WeatherMoon },
+];
+
+export const locationOptions = [
+  { value: "indoor", label: "Indoor", icon: Location },
+  { value: "outdoor", label: "Outdoor", icon: Location },
+];
+
+export const playbackSpeedOptions = [
+  { value: "1x", label: "1x", icon: Play },
+  { value: "2x", label: "2x", icon: FastForward },
+  { value: "3x", label: "3x", icon: FastForward },
+  { value: "5x", label: "5x", icon: FastForward },
 ];

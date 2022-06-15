@@ -16,7 +16,7 @@ const Tasks: NextPage = () => {
           <Text color="muted">All tasks at a glance</Text>
         </Stack>
         <HStack spacing="3">
-          <NewTaskModal />
+          <NewTaskModal buttonVariant="solid" />
         </HStack>
       </Stack>
     </Layout>

@@ -24,7 +24,13 @@ import {
 import { NewVideoTaskContextProvider } from "./Context/NewVideoTaskContext";
 import { NewPhotoTaskContextProvider } from "./Context/NewPhotoTaskContext";
 
-const NewTaskModal = () => {
+type NewTaskModalProps = {
+  buttonVariant: string;
+  width?: string;
+};
+
+const NewTaskModal = (props: NewTaskModalProps) => {
+  const { buttonVariant, width } = props;
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [formStep, setFormStep] = useState(0);
   const [taskType, setTaskType] = useState("video");
@@ -49,6 +55,8 @@ const NewTaskModal = () => {
     <>
       <Button
         colorScheme="purple"
+        variant={buttonVariant}
+        width={width ? width : "auto"}
         onClick={onOpen}
         leftIcon={<Add size="1rem" />}
       >
